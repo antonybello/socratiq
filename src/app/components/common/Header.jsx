@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router';
-
-function Header() {
+ 
+function Header () {
   return (
-    <header>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-        </ul>
+    <div className="nav-container">
+      <nav className="navbar navbar-default">
+          <div className="container">
+              <div className="navbar-header">
+                  <Link className="navbar-brand" to="/">Socratiq</Link>
+              </div>
+              <ul className="nav navbar-nav navbar-right">
+                  <li><Link to="/login">Login</Link></li>
+              </ul>
+          </div>
       </nav>
-    </header>
+    </div>
   )
 }
 

@@ -1,5 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import Header from './common/Header';
+import PropTypes from 'prop-types';
 
 function App({ children }) {
   return (
