@@ -1,12 +1,16 @@
 import React from 'react';
-import Header from './common/Header';
+import Header from './common/header/Header';
+import Tagbar from './common/tagbar/Tagbar'
 import PropTypes from 'prop-types';
 
 function App({ children }) {
   return (
-    <div className="container">
+    <div>
       <Header />
-      {children}
+      <Tagbar />
+      <div className="container">
+        {children}
+      </div>
     </div>
   );
 }

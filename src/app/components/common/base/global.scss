@@ -2,5 +2,14 @@
 body {
   font-family: 'Roboto';
   color: $main-text-grey;
+  background-color:$background-grey;
+}
+
+h1 {
+  color: $main-header-blue;
+}
+
+.main-container {
+  margin-top: 40px;
   background-color: $background-white;
 }

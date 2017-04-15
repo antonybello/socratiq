@@ -1,6 +1,8 @@
 @import './common/base/_bootstrap';
 @import './common/base/variables';
 @import './common/base/global';
-@import './common/header';
+@import './common/header/header';
+@import './common/tagbar/tagbar';
 @import './home/home';
 @import './login/login';
+@import './signup/signup'
