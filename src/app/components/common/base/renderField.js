@@ -6,7 +6,7 @@ const renderField = ({ input, label, type, autoFocus, meta: { touched, error, in
     <div>
       <input {...input} autoFocus={autoFocus} className="form-control"  placeholder={label} type={type}/>
        <div className="help-block">
-         {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+         {touched && ((error && <span className="fade-in">{error}</span>) || (warning && <span className="fade-in">{warning}</span>))}
       </div>
     </div>
   </div>
