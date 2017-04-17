@@ -1,15 +1,111 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700,900,900i');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700,900,900i');
 body {
   font-family: 'Roboto';
   color: $main-text-grey;
   background-color:$background-grey;
 }
 
-h1 {
-  color: $main-header-blue;
-}
+.main {
+  h1, h2, h3, h4 {
+    font-weight: 600;
+    color: $main-header-blue;
+  }
 
-.main-container {
-  margin-top: 40px;
-  background-color: $background-white;
+  .page-title {
+    padding: 30px 0 0 30px;
+  }
+
+  .form-container {
+      padding: 30px;
+      width: 50em;
+
+      form{
+          border-radius: 0;
+          font-family: 'Roboto';
+          background: $background-white;
+
+      }
+      form h2{
+          text-transform: uppercase;
+          font-family: 'Roboto', sans-serif;
+          color: $subtext-text-grey;
+          font-size: 18px;
+          font-weight: 100;
+          padding: 20px;
+          margin: -30px -30px 30px -30px;
+      }
+
+      form input[type="text"],
+      form input[type="date"],
+      form input[type="datetime"],
+      form input[type="email"],
+      form input[type="number"],
+      form input[type="search"],
+      form input[type="time"],
+      form input[type="url"],
+      form input[type="password"],
+      form textarea,
+      form select
+      {
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          border-bottom: 2px solid $background-grey !important;
+          box-shadow:none;
+          background-color:rgba(0,0,0,0) !important;
+          outline: 0 none;
+          display: block;
+          width: 100%;
+          padding: 7px;
+          background: transparent;
+          margin-bottom: 10px;
+          height: 45px;
+      }
+
+      form input[type="text"]:focus,
+      form input[type="date"]:focus,
+      form input[type="datetime"]:focus,
+      form input[type="email"]:focus,
+      form input[type="number"]:focus,
+      form input[type="search"]:focus,
+      form input[type="time"]:focus,
+      form input[type="url"]:focus,
+      form input[type="password"]:focus,
+      form textarea:focus,
+      form select:focus {
+        border-color: none;
+        box-shadow: none;
+        outline: 0 none;
+      }
+
+      form textarea{
+          resize:none;
+          overflow: hidden;
+      }
+
+      .btn-primary {
+          background-color: $main-header-blue;
+          color: $text-white;
+          font-family: 'Roboto';
+          font-size: 16px;
+          padding: 8px 18px;
+          text-decoration: none;
+      }
+
+      form input[type="button"]:hover,
+      form input[type="submit"]:hover {
+          background: linear-gradient(to bottom, $main-link-blue 5%, #30C9C9 100%);
+      }
+
+      .help-block {
+        font-family: 'Roboto';
+        padding-left: 5px;
+      }
+  }
+
+
+  .main-container {
+    margin-top: 40px;
+    background-color: $background-white;
+  }
 }

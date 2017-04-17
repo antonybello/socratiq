@@ -5,7 +5,6 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import routes from './routes';
 import reducers from './reducers';
-
 import './components/bundle.scss';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
