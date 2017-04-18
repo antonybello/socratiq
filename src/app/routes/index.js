@@ -4,6 +4,7 @@ import App from '../components/App';
 import Home from '../components/home/Home'
 import Login from '../components/login/Login';
 import SignUp from '../components/signup/SignUp';
+import AuthProof from '../components/authproof/AuthProof';
 // import {requireAuthentication} from '../components/AuthenticatedComponent';
 
 export default(
@@ -12,5 +13,7 @@ export default(
     <Route path="/home" component={Home} />
     <Route path="/login" component={Login}/>
     <Route path="/signup" component={SignUp}/>
+    <Route path="/auth-proof" component={AuthProof}/>
+    <Route path="/searchResults" component={Home}/>
   </Route>
 );

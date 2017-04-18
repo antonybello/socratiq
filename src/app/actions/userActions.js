@@ -3,9 +3,9 @@ import axios from 'axios';
 import { SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE, RESET_USER,
          SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILURE, LOGOUT_USER} from '../constants/AppConstants';
 
+
 const ROOT_URL = 'https://socratiq-app.appspot.com/api'
 
-//
 // export function validateEmail(validateEmailToken) {
 //   //check if token from welcome email is valid, if so, update email as verified and login the user from response
 //   const request = axios.get(`${ROOT_URL}/validateEmail/${validateEmailToken}`);
@@ -70,12 +70,19 @@ const ROOT_URL = 'https://socratiq-app.appspot.com/api'
 
 
 export function signUpUser(formValues) {
-  const request = axios.put(`${ROOT_URL}/users/${formValues.userName}`, formValues);
-  
+  const username = formValues.username
+  const payload = {
+    "name": formValues.name,
+    "email": formValues.email,
+    "password": formValues.password
+  };
+
+  const request = axios.put(`${ROOT_URL}/users/${username}`, payload);
   return {
     type: SIGNUP_USER,
     payload: request
   };
+
 }
 
 export function signUpUserSuccess(user) {
