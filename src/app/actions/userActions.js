@@ -4,7 +4,7 @@ import { SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE, RESET_USER,
          SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILURE, LOGOUT_USER} from '../constants/AppConstants';
 
 
-const ROOT_URL = 'https://socratiq-app.appspot.com/api'
+const ROOT_URL = 'https://socratiq-app.appspot.com'
 
 // export function validateEmail(validateEmailToken) {
 //   //check if token from welcome email is valid, if so, update email as verified and login the user from response
