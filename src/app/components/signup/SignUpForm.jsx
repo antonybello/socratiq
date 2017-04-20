@@ -12,7 +12,6 @@ import { signUpUser, signUpUserSuccess, signUpUserFailure, } from '../../actions
 function validate(values) {
   var errors = {};
   var hasErrors = false;
-
   if (!values.name || values.name.trim() === '') {
     errors.name = 'enter a name';
     hasErrors = true;
@@ -23,6 +22,11 @@ function validate(values) {
   }
   if (!values.email || values.email.trim() === '') {
     errors.email = 'enter email';
+    hasErrors = true;
+  }
+  const school = values.school;
+  if (!school || (school && typeof school === 'string' && schools.indexOf(school) == -1))  {
+    errors.school = 'enter a valid school';
     hasErrors = true;
   }
   if (!values.password || values.password.trim() === '') {
@@ -122,10 +126,13 @@ class SignUpForm extends Component {
                  type="text"
                  component={ renderField }
                  label="username" />
-          <Typeahead
-                 labelKey="name"
+          <Field
+                 name="school"
+                 type="text"
+                 typeahead="typeahead"
+                 component={ renderField }
                  options={schools}
-                 placeholder="choose a school..." />
+                 label="choose a school..." />
           <Field
                  name="email"
                  type="email"
