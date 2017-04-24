@@ -13,9 +13,9 @@ export default class Header extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // if (this.props.user.user && !nextProps.user.user) { //logout (had user(this.props.user.user) but no loger the case (!nextProps.user.user))
-    //   this.context.router.push('/');
-    // }
+     if (this.props == 'authenticated' && !nextProps == 'authenticated' ) { //logout (had user(this.props.user.user) but no loger the case (!nextProps.user.user))
+       this.context.router.push('/');
+     }
   }
 
   renderTopLinks() {
@@ -29,7 +29,10 @@ export default class Header extends Component {
             <Link to="/new-story">New post</Link>
           </li>
           <li>
-            <Link to="/home">Log out</Link>
+            <Link to="/home" onClick={this.props.logout}>Log out</Link>
+          </li>
+          <li>
+            <Link to="/profile/:username">Profile</Link>
           </li>
         </ul>
       );
