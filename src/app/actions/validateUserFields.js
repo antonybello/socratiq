@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { VALIDATE_USER_FIELDS, VALIDATE_USER_FIELDS_SUCCESS, VALIDATE_USER_FIELDS_FAILURE, RESET_VALIDATE_USER_FIELDS } from '../constants/AppConstants'
 
-const ROOT_URL = 'https://socratiq-app.appspot.com/api/users/'
+const ROOT_URL = 'https://socratiq-app.appspot.com/users'
 
 export function validateUserFields(values) {
   const request = axios.put(`${ROOT_URL}/users/validate/fields`, values);
