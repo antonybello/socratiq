@@ -10,6 +10,8 @@ import {
 
 const ROOT_URL = 'https://socratiq-app.appspot.com';
 
+
+// TODO: Get legit token from state and add to request headers
 export function fetchArticles() {
   const request = axios({
     method: 'get',

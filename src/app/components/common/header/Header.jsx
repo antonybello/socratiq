@@ -27,7 +27,7 @@ export default class Header extends Component {
             <Link to="/new-story">New post</Link>
           </li>
           <li>
-            <Link to="/feed" onClick={this.props.logout}>Log out</Link>
+            <Link to="/" onClick={this.props.logout}>Log out</Link>
           </li>
           <li>
             <Link to="/profile/:username">Profile</Link>

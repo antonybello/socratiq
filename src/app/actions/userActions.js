@@ -108,6 +108,7 @@ export function resetUser() {
 
 export function signInUser(formValues) {
   const request = axios.post(`${ROOT_URL}/login`, formValues);
+  console.log(formValues);
   return {
     type: SIGNIN_USER,
     payload: request

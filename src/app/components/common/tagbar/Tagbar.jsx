@@ -7,7 +7,7 @@ export default class Tagbar extends Component {
         <nav className="navbar tag-nav navbar-default">
           <div className="container">
             <ul className="nav navbar-nav navbar-left">
-                <li><Link to="/feed">Home</Link></li>
+                <li><Link to="/">Home</Link></li>
                 <li><Link to="/searchResults">Academic</Link></li>
                 <li><Link to="/searchResults">Social</Link></li>
                 <li><Link to="/searchResults">Politics</Link></li>

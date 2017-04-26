@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
-import {Typeahead} from 'react-bootstrap-typeahead';
 import renderField from '../common/base/renderField';
-import { schools } from '../../constants/schools';
-// import { validateUserFields, validateUserFieldsSuccess, validateUserFieldsFailure, resetValidateUserFields } from '../actions/validateUserFields';
 import { signInUser, signInUserSuccess, signInUserFailure, } from '../../actions/userActions';
 
 //Client side validation
@@ -13,8 +10,8 @@ function validate(values) {
   var errors = {};
   var hasErrors = false;
 
-  if (!values.username || values.username.trim() === '') {
-    errors.username = 'enter username';
+  if (!values.userid || values.userid.trim() === '') {
+    errors.userid = 'enter username';
     hasErrors = true;
   }
   if (!values.password || values.password.trim() === '') {
@@ -24,32 +21,6 @@ function validate(values) {
 
   return hasErrors && errors;
 }
-
-// // //For instant async server validation
-// const asyncValidate = (values, dispatch) => {
-//   return dispatch(validateUserFields(values))
-//     .then((result) => {
-//       //Note: Error's "data" is in result.payload.response.data
-//       // success's "data" is in result.payload.data
-//       if (!result.payload.response) { //1st onblur
-//         return;
-//       }
-//
-//       let {data, status} = result.payload.response;
-//
-//       //if status is not 200 or any one of the fields exist, then there is a field error
-//       if (status != 200 || data.username || data.email) {
-//         //let other components know of error by updating the redux` state
-//         dispatch(validateUserFieldsFailure(data));
-//         throw data;
-//       } else {
-//         //let other components know that everything is fine by updating the redux` state
-//         dispatch(validateUserFieldsSuccess(data)); //ps: this is same as dispatching RESET_USER_FIELDS
-//       }
-//     });
-// };
-//
-
 
 //For any field errors upon submission (i.e. not instant check)
 const validateAndLoginUser = (values, dispatch) => {
@@ -70,16 +41,12 @@ const validateAndLoginUser = (values, dispatch) => {
    });
 };
 
-
-
-
 class LoginForm extends Component {
   static contextTypes = {
     router: PropTypes.object
   };
 
   componentWillMount() {
-    //always reset that global state back to null when you REMOUNT
     this.props.resetMe();
   }
 
@@ -123,7 +90,6 @@ class LoginForm extends Component {
 }
 
 export default reduxForm({
-  form: 'LoginForm', // a unique identifier for this form
-  validate // validation function given to redux-form
-    // asyncValidate
+  form: 'LoginForm',
+  validate
 })(LoginForm)
