@@ -30,14 +30,13 @@ export default class ArticlesList extends Component {
   render() {
     const { articles, loading, error } = this.props.articlesList;
     if(loading) {
-      return <div><h1>Articles</h1><h3>Loading...</h3></div>
+      return <div><h3>Loading...</h3></div>
     } else if(error) {
       return <div className="alert alert-danger">Error: {error.message}</div>
     }
 
     return (
       <div>
-        <h1>Articles</h1>
         <ul className="list-group">
           {this.renderArticles(articles)}
         </ul>

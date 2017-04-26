@@ -7,7 +7,6 @@ import SignUp from '../components/signup/SignUp';
 import AuthProof from '../components/authproof/AuthProof';
 import Profile from '../components/profile/Profile';
 import Newpost from '../components/newpost/Newpost';
-// import {requireAuthentication} from '../components/AuthenticatedComponent';
 
 export default(
   <Route path="/" component={App}>
@@ -17,7 +16,6 @@ export default(
     <Route path="/auth-proof" component={AuthProof}/>
     <Route path="/searchResults" component={HomeFeed}/>
     <Route path="/profile/:username" component={Profile}/>
-    <Route path="/new-story" component={Newpost}/>
-
+    <Route path="/new" component={Newpost}/>
   </Route>
 );
