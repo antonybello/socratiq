@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
 import App from '../components/App';
-import Home from '../components/home/Home'
+import Feed from '../components/Feed/Feed'
 import Login from '../components/login/Login';
 import SignUp from '../components/signup/SignUp';
 import AuthProof from '../components/authproof/AuthProof';
@@ -11,12 +11,12 @@ import Newpost from '../components/newpost/Newpost';
 
 export default(
   <Route path="/" component={App}>
-    <IndexRoute component={Home}/>;
-    <Route path="/home" component={Home} />
+    <IndexRoute component={Feed}/>;
+    <Route path="/feed" component={Feed} />
     <Route path="/login" component={Login}/>
     <Route path="/signup" component={SignUp}/>
     <Route path="/auth-proof" component={AuthProof}/>
-    <Route path="/searchResults" component={Home}/>
+    <Route path="/searchResults" component={Feed}/>
     <Route path="/profile/:username" component={Profile}/>
     <Route path="/new-story" component={Newpost}/>
 
