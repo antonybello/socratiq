@@ -10,8 +10,8 @@ function validate(values) {
   var errors = {};
   var hasErrors = false;
 
-  if (!values.username || values.username.trim() === '') {
-    errors.username = 'enter username';
+  if (!values.userid || values.userid.trim() === '') {
+    errors.userid = 'enter username';
     hasErrors = true;
   }
   if (!values.password || values.password.trim() === '') {
@@ -62,7 +62,7 @@ class LoginForm extends Component {
       <div className='form-container'>
         <form onSubmit={handleSubmit(validateAndLoginUser) }>
           <Field
-                 name="username"
+                 name="userid"
                  type="text"
                  component={ renderField }
                  label="username" />

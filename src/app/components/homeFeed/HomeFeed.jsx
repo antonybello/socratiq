@@ -6,7 +6,7 @@ import ArticlesListContainer from '../../containers/ArticlesListContainer';
 export default class HomeFeed extends Component {
   render() {
     return (
-      <div>
+      <div className="main-container">
         <ArticlesListContainer />
       </div>
     );

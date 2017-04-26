@@ -6,8 +6,10 @@ import PropTypes from 'prop-types';
 function App({ children }) {
   return (
     <div>
-      <HeaderContainer />
-      <Tagbar />
+      <div className="top-container">
+        <HeaderContainer />
+        <Tagbar />
+      </div>
       <div className="container main">
         {children}
       </div>

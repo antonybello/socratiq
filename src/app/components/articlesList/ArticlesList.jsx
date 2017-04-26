@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router'
-;
+import { Link } from 'react-router';
+import ArticleCard from '../articleCard/ArticleCard';
+
 export default class ArticlesList extends Component {
   componentWillMount() {
     this.props.fetchArticles();
@@ -18,11 +19,7 @@ export default class ArticlesList extends Component {
   renderArticles(articles) {
     return articles.map((article) => {
       return (
-        <li className="list-group-item" key={article.article_id}>
-          <Link style={{color:'black'}} to={"articles/" + article.article_id}>
-            <h3 className="list-group-item-heading">{article.title}</h3>
-          </Link>
-        </li>
+        <ArticleCard key={article.article_id} {...article} />
       );
     });
   }
@@ -37,9 +34,7 @@ export default class ArticlesList extends Component {
 
     return (
       <div>
-        <ul className="list-group">
           {this.renderArticles(articles)}
-        </ul>
       </div>
     );
   }
