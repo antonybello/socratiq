@@ -19,8 +19,6 @@ export default class Header extends Component {
   }
 
   renderTopLinks() {
-    // console.log("PROPS");
-    // console.log(this.props);
     const { isAuthenticated } = this.props;
     if (isAuthenticated) {
       return (
