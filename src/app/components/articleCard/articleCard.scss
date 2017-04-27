@@ -1,7 +1,60 @@
+h4 {
+  color: $main-header-blue;
+}
+
+h5, h6 {
+  font-weight: 400;
+}
+
 .card {
     background-color: $background-white;
     padding: 15px;
     width: 50em;
     margin-bottom: 40px;
     float: right;
+}
+
+.tags, span {
+  font-size: 12px;
+}
+
+.tags {
+    margin-left: 0px;
+    float: left;
+    .tag {
+      background: #eeeeee;
+      margin-left: 10px;
+      border-radius: 4px;
+      padding: 4px;
+    }
+}
+
+.follow {
+  margin-left: 10px;
+  background: transparent;
+  padding: 3px 10px 3px 10px;
+  border: 2px solid $accent-link-green;
+  border-radius: 20px;
+  color: $accent-link-green;
+  &:hover {
+    color: $accent-link-hover;
+    border-color:  $accent-link-hover;
+    text-decoration: none;
+  }
+}
+
+
+
+.read-more {
+  margin-top: .5em;
+  text-decoration: underline;
+  float: right;
+  letter-spacing: .5px;
+  a {
+    color: $fade-text-grey;
+    font-weight: 400;
+    &:hover {
+      color: $subtext-text-grey;
+    }
+  }
 }
