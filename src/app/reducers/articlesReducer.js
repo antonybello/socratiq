@@ -24,7 +24,7 @@ export default function(state = INITIAL_STATE, action) {
    return { ...state, articlesList: {articles: [], error: error, loading: false} };
 
   case FETCH_ARTICLE:
-   return { ...state, activeArticle:{...state.activearticle, loading: true}};
+   return { ...state, activeArticle:{...state.activeArticle, loading: true}};
   case FETCH_ARTICLE_SUCCESS:
    return { ...state, activeArticle: {article: action.payload, error:null, loading: false}};
   case FETCH_ARTICLE_FAILURE:
@@ -32,7 +32,7 @@ export default function(state = INITIAL_STATE, action) {
    return { ...state, activeArticle: {article: null, error:error, loading:false}};
 
   case CREATE_ARTICLE:
-  	return {...state, newArticle: {...state.newarticle, loading: true}}
+  	return {...state, newArticle: {...state.newArticle, loading: true}}
   case CREATE_ARTICLE_SUCCESS:
   	return {...state, newArticle: {article:action.payload, error:null, loading: false}}
   case CREATE_ARTICLE_FAILURE:

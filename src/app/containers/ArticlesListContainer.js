@@ -19,10 +19,9 @@ const mapDispatchToProps = (dispatch) => {
           if(payload.status != 200) {
               dispatch(fetchArticlesFailure(payload.data));
           } else {
-
               dispatch(fetchArticlesSuccess(payload.data))
           }
-        }).catch((payload) => {
+        }).catch((error) => {
           dispatch(fetchArticlesFailure(payload));
         });
       });

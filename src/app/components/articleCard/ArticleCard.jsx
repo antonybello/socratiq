@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 // TODO: Add dispatcher and actions to the follow onClick Link
 //       We could make the follow button a component with state
 //       depending on whether or not we follow the rendered author
+// TODO: Change follow button to only show when logged in
 
 export default class ArticleCard extends Component {
   renderTags(tags) {

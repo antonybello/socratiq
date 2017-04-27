@@ -1,0 +1,28 @@
+.article {
+  width: 60em;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.article-container {
+  padding: 10px 30px 40px 30px;
+  .tags {
+    margin-left: 0px;
+    font-size: 12px;
+    float: right;
+    .tag {
+      background: #eeeeee;
+      margin-left: 10px;
+      border-radius: 4px;
+      padding: 4px;
+    }
+  }
+  p {
+    font-size: 22px;
+    font-family: 'Source Serif Pro';
+    letter-spacing: 1.25px;
+    line-height: 1.5em;
+    padding-bottom: 10px;
+  }
+
+}

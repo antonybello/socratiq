@@ -1,5 +1,10 @@
 h4 {
   color: $main-header-blue;
+  a {
+    &:hover {
+      color: $main-link-hover;
+    }
+  }
 }
 
 h5, h6 {
