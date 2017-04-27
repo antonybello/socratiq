@@ -26,20 +26,32 @@ function validate(values) {
 const validateAndLoginUser = (values, dispatch) => {
   return new Promise ((resolve, reject) => {
        let response = dispatch(signInUser(values));
+       console.log("response:");
+       console.log(response);
        response.payload.then((payload) =>  {
-           if(payload.status != 204) {
+           if (payload.status == 204){
+               dispatch(signInUserSuccess(payload, values.userid));
+               resolve();
+           } else {
                dispatch(signInUserFailure(payload));
                reject(payload.data);
-           } else {
-               dispatch(signInUserSuccess(payload));
-               resolve();
            }
-       }).catch((payload) => {
-           dispatch(signInUserFailure(payload));
-           reject(payload.data);
+       }).catch((error) => {
+           if (error.response.status == 403) {
+             alert("Username and password do not match. Try again.");
+             dispatch(signInUserFailure(payload));
+             reject(payload.data);
+           } else {
+             alert("Server error, try again.");
+             dispatch(signInUserFailure(payload));
+             reject(payload.data);
+           }
        });
    });
 };
+
+
+
 
 class LoginForm extends Component {
   static contextTypes = {

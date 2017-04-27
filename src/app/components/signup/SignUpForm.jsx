@@ -15,8 +15,8 @@ function validate(values) {
     errors.name = 'enter a name';
     hasErrors = true;
   }
-  if (!values.username || values.username.trim() === '') {
-    errors.username = 'enter username';
+  if (!values.userid || values.userid.trim() === '') {
+    errors.userid = 'enter username';
     hasErrors = true;
   }
   if (!values.email || values.email.trim() === '') {
@@ -50,16 +50,24 @@ const validateAndSignUpUser = (values, dispatch) => {
   return new Promise ((resolve, reject) => {
        let response = dispatch(signUpUser(values));
        response.payload.then((payload) =>  {
-           if(payload.status != 201) {
+           if (payload.status == 201){
+               dispatch(signUpUserSuccess(payload, values.userid));
+               resolve();
+           } else {
                dispatch(signUpUserFailure(payload));
                reject(payload.data);
-           } else {
-               dispatch(signUpUserSuccess(payload));
-               resolve();
            }
-       }).catch((payload) => {
-           dispatch(signUpUserFailure(payload));
-           reject(payload.data);
+       }).catch((error) => {
+           if (error.response.status == 409) {
+             alert("Username already exists, please try a new one.");
+             dispatch(signUpUserFailure(payload));
+             reject(payload.data);
+           } else {
+             alert("Server error, try again.");
+             dispatch(signUpUserFailure(payload));
+             reject(payload.data);
+           }
+
        });
    });
 };
@@ -92,7 +100,7 @@ class SignUpForm extends Component {
                  component={ renderField }
                  label="full name" />
           <Field
-                 name="username"
+                 name="userid"
                  type="text"
                  component={ renderField }
                  label="username" />

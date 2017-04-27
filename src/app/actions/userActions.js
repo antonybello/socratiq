@@ -70,7 +70,7 @@ const ROOT_URL = 'https://socratiq-app.appspot.com'
 
 
 export function signUpUser(formValues) {
-  const username = formValues.username
+  const username = formValues.userid
   const payload = {
     "name": formValues.name,
     "email": formValues.email,
@@ -85,10 +85,11 @@ export function signUpUser(formValues) {
 
 }
 
-export function signUpUserSuccess(user) {
+export function signUpUserSuccess(user, username) {
   return {
     type: SIGNUP_USER_SUCCESS,
-    payload: user
+    payload: user,
+    userid: username
   };
 }
 
@@ -115,10 +116,11 @@ export function signInUser(formValues) {
   };
 }
 
-export function signInUserSuccess(user) {
+export function signInUserSuccess(user, username) {
   return {
     type: SIGNIN_USER_SUCCESS,
-    payload: user
+    payload: user,
+    userid: username
   };
 }
 
