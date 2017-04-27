@@ -37,3 +37,28 @@ export function fetchArticlesFailure(error) {
     payload: error
   };
 }
+
+
+export function fetchArticle(id) {
+  const request = axios.get(`${ROOT_URL}/articles/${id}`);
+
+  return {
+    type: FETCH_ARTICLE,
+    payload: request
+  };
+}
+
+
+export function fetchArticleSuccess(activeArticle) {
+  return {
+    type: FETCH_ARTICLE_SUCCESS,
+    payload: activeArticle
+  };
+}
+
+export function fetchArticleFailure(error) {
+  return {
+    type: FETCH_ARTICLE_FAILURE,
+    payload: error
+  };
+}
