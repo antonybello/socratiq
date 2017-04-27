@@ -5,72 +5,8 @@ import { reduxForm, Field, SubmissionError } from 'redux-form';
 import {Typeahead} from 'react-bootstrap-typeahead';
 import renderField from '../common/base/renderField';
 import { schools } from '../../constants/schools';
+import { schoolsMap } from '../../constants/schoolsMap'
 import { signUpUser, signUpUserSuccess, signUpUserFailure, } from '../../actions/userActions';
-
-//Client side validation
-function validate(values) {
-  var errors = {};
-  var hasErrors = false;
-  if (!values.name || values.name.trim() === '') {
-    errors.name = 'enter a name';
-    hasErrors = true;
-  }
-  if (!values.userid || values.userid.trim() === '') {
-    errors.userid = 'enter username';
-    hasErrors = true;
-  }
-  if (!values.email || values.email.trim() === '') {
-    errors.email = 'enter email';
-    hasErrors = true;
-  }
-  const school = values.school;
-  if (!school || (school && typeof school === 'string' && schools.indexOf(school) == -1))  {
-    errors.school = 'enter a valid school';
-    hasErrors = true;
-  }
-  if (!values.password || values.password.trim() === '') {
-    errors.password = 'enter password';
-    hasErrors = true;
-  }
-  if (!values.confirmPassword || values.confirmPassword.trim() === '') {
-    errors.confirmPassword = 'confirm password';
-    hasErrors = true;
-  }
-
-  if (values.confirmPassword && values.confirmPassword.trim() !== '' && values.password && values.password.trim() !== '' && values.password !== values.confirmPassword) {
-    errors.password = 'Passwords don\'t match';
-    errors.password = 'Passwords don\'t match';
-    hasErrors = true;
-  }
-  return hasErrors && errors;
-}
-
-//For any field errors upon submission (i.e. not instant check)
-const validateAndSignUpUser = (values, dispatch) => {
-  return new Promise ((resolve, reject) => {
-       let response = dispatch(signUpUser(values));
-       response.payload.then((payload) =>  {
-           if (payload.status == 201){
-               dispatch(signUpUserSuccess(payload, values.userid));
-               resolve();
-           } else {
-               dispatch(signUpUserFailure(payload));
-               reject(payload.data);
-           }
-       }).catch((error) => {
-           if (error.response.status == 409) {
-             alert("Username already exists, please try a new one.");
-             dispatch(signUpUserFailure(payload));
-             reject(payload.data);
-           } else {
-             alert("Server error, try again.");
-             dispatch(signUpUserFailure(payload));
-             reject(payload.data);
-           }
-
-       });
-   });
-};
 
 class SignUpForm extends Component {
   static contextTypes = {
@@ -78,7 +14,6 @@ class SignUpForm extends Component {
   };
 
   componentWillMount() {
-    //always reset that global state back to null when you REMOUNT
     this.props.resetMe();
   }
 
@@ -105,17 +40,17 @@ class SignUpForm extends Component {
                  component={ renderField }
                  label="username" />
           <Field
-                 name="school"
+                 name="institution"
                  type="text"
                  typeahead="typeahead"
                  component={ renderField }
                  options={schools}
-                 label="choose a school..." />
+                 label="choose an institution..." />
           <Field
                  name="email"
                  type="email"
                  component={ renderField }
-                 label="email"/>
+                 label="enter your institution email"/>
           <Field
                  name="password"
                  type="password"
@@ -125,7 +60,7 @@ class SignUpForm extends Component {
                  name="confirmPassword"
                  type="password"
                  component={ renderField }
-                 label="confirm" />
+                 label="confirm password" />
           <div>
             <button
                     type="submit"
@@ -142,6 +77,88 @@ class SignUpForm extends Component {
       </div>
     )
   }
+}
+
+// Dispatches actions onSubmit and on result of registration attempt
+const validateAndSignUpUser = (values, dispatch) => {
+  return new Promise ((resolve, reject) => {
+       let response = dispatch(signUpUser(values));
+       response.payload.then((payload) =>  {
+           if (payload.status == 201){
+               dispatch(signUpUserSuccess(payload, values.userid));
+               resolve();
+           } else {
+               dispatch(signUpUserFailure(payload));
+               reject(payload.data);
+           }
+       }).catch((error) => {
+           if (error.response.status == 409) {
+             alert("Username already exists, please try a new one.");
+             dispatch(signUpUserFailure(payload));
+             reject(payload.data);
+           } else {
+             alert("Server error, try again.");
+             dispatch(signUpUserFailure(payload));
+             reject(payload.data);
+           }
+
+       });
+   });
+};
+
+//Client side validation
+function validate(values) {
+  var errors = {};
+  var hasErrors = false;
+  if (!values.name || values.name.trim() === '') {
+    errors.name = 'enter a name';
+    hasErrors = true;
+  }
+  if (!values.userid || values.userid.trim() === '') {
+    errors.userid = 'enter username';
+    hasErrors = true;
+  }
+  const email = values.email;
+  if (!email || email.trim() === '') {
+    errors.email = 'enter your institution email';
+    hasErrors = true;
+  }
+  // Check if institution isn't valid
+  const institution = cleanInstitution(values.institution);
+  if (!institution || (institution && typeof institution === 'string' && schools.indexOf(institution) == -1))  {
+    errors.institution = 'enter a valid institution';
+    hasErrors = true;
+  } else if (email) { // If institution valid, check if email is also entered
+    if (schoolsMap.hasOwnProperty(institution)) { // If institution exists in dict
+      const domain = schoolsMap[institution];
+      if (!(email.endsWith('@' + domain) || email.endsWith('.' + domain))) { // Check valid domain
+        errors.email = 'enter your valid institution email';
+        hasErrors = true;
+      }
+    }
+  }
+
+  if (!values.password || values.password.trim() === '') {
+    errors.password = 'enter password';
+    hasErrors = true;
+  }
+  if (!values.confirmPassword || values.confirmPassword.trim() === '') {
+    errors.confirmPassword = 'confirm password';
+    hasErrors = true;
+  }
+
+  if (values.confirmPassword && values.confirmPassword.trim() !== '' && values.password && values.password.trim() !== '' && values.password !== values.confirmPassword) {
+    errors.password = 'Passwords don\'t match';
+    errors.password = 'Passwords don\'t match';
+    hasErrors = true;
+  }
+  return hasErrors && errors;
+}
+
+// Institution can get parsed as an array because of TypeAhead,
+// so make sure we have a string
+function cleanInstitution(formVal) {
+  return typeof formVal === 'object' ? formVal[0] : formVal;
 }
 
 export default reduxForm({
