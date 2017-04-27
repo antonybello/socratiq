@@ -50,16 +50,24 @@ const validateAndSignUpUser = (values, dispatch) => {
   return new Promise ((resolve, reject) => {
        let response = dispatch(signUpUser(values));
        response.payload.then((payload) =>  {
-           if(payload.status != 201) {
+           if (payload.status == 201){
+               dispatch(signUpUserSuccess(payload, values.userid));
+               resolve();
+           } else {
                dispatch(signUpUserFailure(payload));
                reject(payload.data);
-           } else {
-               dispatch(signUpUserSuccess(payload));
-               resolve();
            }
-       }).catch((payload) => {
-           dispatch(signUpUserFailure(payload));
-           reject(payload.data);
+       }).catch((error) => {
+           if (error.response.status == 409) {
+             alert("Username already exists, please try a new one.");
+             dispatch(signUpUserFailure(payload));
+             reject(payload.data);
+           } else {
+             alert("Server error, try again.");
+             dispatch(signUpUserFailure(payload));
+             reject(payload.data);
+           }
+
        });
    });
 };

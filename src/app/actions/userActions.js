@@ -85,10 +85,11 @@ export function signUpUser(formValues) {
 
 }
 
-export function signUpUserSuccess(user) {
+export function signUpUserSuccess(user, username) {
   return {
     type: SIGNUP_USER_SUCCESS,
-    payload: user
+    payload: user,
+    userid: username
   };
 }
 
@@ -115,10 +116,11 @@ export function signInUser(formValues) {
   };
 }
 
-export function signInUserSuccess(user) {
+export function signInUserSuccess(user, username) {
   return {
     type: SIGNIN_USER_SUCCESS,
-    payload: user
+    payload: user,
+    userid: username
   };
 }
 
