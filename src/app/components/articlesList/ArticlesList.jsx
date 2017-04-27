@@ -19,7 +19,7 @@ export default class ArticlesList extends Component {
   renderArticles(articles) {
     return articles.map((article) => {
       return (
-        <ArticleCard key={article.article_id} {...article} />
+        <ArticleCard key={article.id} {...article} />
       );
     });
   }
