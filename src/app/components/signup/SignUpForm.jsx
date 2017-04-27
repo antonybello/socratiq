@@ -15,8 +15,8 @@ function validate(values) {
     errors.name = 'enter a name';
     hasErrors = true;
   }
-  if (!values.username || values.username.trim() === '') {
-    errors.username = 'enter username';
+  if (!values.userid || values.userid.trim() === '') {
+    errors.userid = 'enter username';
     hasErrors = true;
   }
   if (!values.email || values.email.trim() === '') {
@@ -100,7 +100,7 @@ class SignUpForm extends Component {
                  component={ renderField }
                  label="full name" />
           <Field
-                 name="username"
+                 name="userid"
                  type="text"
                  component={ renderField }
                  label="username" />
