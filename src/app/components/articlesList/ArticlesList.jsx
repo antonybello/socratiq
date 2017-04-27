@@ -4,7 +4,12 @@ import ArticleCard from '../articleCard/ArticleCard';
 
 export default class ArticlesList extends Component {
   componentWillMount() {
-    this.props.fetchArticles();
+    if (this.props.tag) {
+      this.props.fetchArticlesForTag(this.props.tag);
+    }
+    else {
+      this.props.fetchArticles();
+    }
   }
 
   renderCategories(categories) {

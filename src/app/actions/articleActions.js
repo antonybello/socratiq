@@ -24,6 +24,18 @@ export function fetchArticles() {
   };
 }
 
+export function fetchArticlesForTag(tag) {
+  const request = axios({
+    method: 'get',
+    url: `${ROOT_URL}/tags/${tag}/articles`
+  });
+
+  return {
+    type: FETCH_ARTICLES,
+    payload: request
+  };
+}
+
 export function fetchArticlesSuccess(posts) {
   return {
     type: FETCH_ARTICLES_SUCCESS,
