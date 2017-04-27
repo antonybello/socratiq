@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700,900,900i');
+@import url('https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700,900,900i');
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
@@ -23,17 +23,25 @@
   width: 100%;
 }
 
-body {
+body, h1, h2, h3, h4, h5, h6, a {
   font-family: 'Roboto';
+}
+
+body {
   color: $main-text-grey;
   background-color:$background-grey;
+}
+
+a, a:hover, a:active, a:visited, a:focus {
+  cursor: pointer;
+  cursor: hand;
+  text-decoration:none;
 }
 
 .main {
   margin-top: 11em;
 
-  h1, h2, h3, h4 {
-    font-weight: 600;
+  h1, h2, h3 {
     color: $main-header-blue;
   }
 
