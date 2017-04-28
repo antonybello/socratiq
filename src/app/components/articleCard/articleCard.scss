@@ -35,22 +35,6 @@ h5, h6 {
     }
 }
 
-.follow {
-  margin-left: 10px;
-  background: transparent;
-  padding: 3px 10px 3px 10px;
-  border: 2px solid $accent-link-green;
-  border-radius: 20px;
-  color: $accent-link-green;
-  &:hover {
-    color: $accent-link-hover;
-    border-color:  $accent-link-hover;
-    text-decoration: none;
-  }
-}
-
-
-
 .read-more {
   margin-top: .5em;
   text-decoration: underline;

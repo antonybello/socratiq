@@ -5,12 +5,12 @@ import ArticleCard from '../articleCard/ArticleCard';
 export default class ArticlesList extends Component {
 
   componentWillMount() {
-    this.props.fetchArticles(this.props.filters);
+    this.props.fetchArticles(this.props.filters, this.props.token);
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.filters != nextProps.filters) {
-      this.props.fetchArticles(nextProps.filters);
+      this.props.fetchArticles(nextProps.filters, nextProps.token);
     }
   }
 
@@ -26,7 +26,7 @@ export default class ArticlesList extends Component {
   renderArticles(articles) {
     return articles.map((article) => {
       return (
-        <ArticleCard key={article.id} {...article} />
+        <ArticleCard userid={this.props.userid} isAuthenticated={this.props.isAuthenticated} key={article.id} {...article} />
       );
     });
   }

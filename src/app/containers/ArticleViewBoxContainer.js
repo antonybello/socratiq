@@ -3,17 +3,22 @@ import { fetchArticle, fetchArticleSuccess, fetchArticleFailure } from '../actio
 import ArticleViewBox from '../components/articleView/ArticleViewBox';
 
 const mapStateToProps = (state, currentProps) => {
+  const activeArticle = state.articles.activeArticle;
   return {
     activeArticle: state.articles.activeArticle,
-    articleId: currentProps.id
+    articleId: currentProps.id,
+    author: activeArticle.article ? activeArticle.article.author : null,
+    isAuthenticated: state.user.status === 'authenticated',
+    userid: state.user.userid,
+    token: state.user.token
   };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchArticle: (id) => {
+    fetchArticle: (id, token) => {
       return new Promise (() => {
-        let response = dispatch(fetchArticle(id));
+        let response = dispatch(fetchArticle(id, token));
         response.payload.then((payload) => {
           if(payload.status != 200) {
               dispatch(fetchArticleFailure(payload.data));

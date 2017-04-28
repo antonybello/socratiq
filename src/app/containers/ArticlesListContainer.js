@@ -5,6 +5,7 @@ import ArticlesList from '../components/articlesList/ArticlesList';
 const mapStateToProps = (state, currentProps) => {
   return {
     isAuthenticated: state.user.status === 'authenticated',
+    userid: state.user.userid,
     token: state.user.token,
     articlesList: state.articles.articlesList
   };
@@ -17,9 +18,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
   return {
     filters: filters,
-    fetchArticles: (filters) => {
+    fetchArticles: (filters, token) => {
       return new Promise (() => {
-        let response = dispatch(fetchArticles(filters));
+        let response = dispatch(fetchArticles(filters, token));
         response.payload.then((payload) => {
           if(payload.status != 200) {
               dispatch(fetchArticlesFailure(payload.data));
@@ -28,8 +29,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           }
         }).catch((error) => {
           let errorMessage;
-          if (error.response.status === 404) {
-            errorMessage = {message: `No articles found for ${filters.tag}.`}
+          if (error.response.status && error.response.status === 404) {
+            errorMessage = { message: `No articles found for ${filters.tag}.`};
           } else {
             errorMessage = error;
           }

@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
+import FollowButton from '../followButton/FollowButton';
 
 // TODO: Add dispatcher and actions to the follow onClick Link
 //       We could make the follow button a component with state
 //       depending on whether or not we follow the rendered author
-// TODO: Change follow button to only show when logged in
+
+// TODO: Change the text of the button, but send a request in background
+//       so we don't need to wait on db for UI update.
+
+// TODO: Potentially add another field allowing for toggle of text..? 
 
 export default class ArticleCard extends Component {
   renderTags(tags) {
@@ -17,9 +22,14 @@ export default class ArticleCard extends Component {
   }
 
   renderFollowButton() {
-    return (
-    <Link><span className="follow">Follow</span></Link>
-    );
+    const { isAuthenticated, userid, author } = this.props;
+    if (isAuthenticated) {
+      if (userid !== author.userid) {
+          return (
+            <FollowButton followed={author.followed} onClick={this.handleFollow} />
+          );
+      }
+    }
   }
 
   render() {
@@ -27,7 +37,7 @@ export default class ArticleCard extends Component {
     return(
       <div className="container card">
         <Link to={`article/${id}`}><h4>{title}</h4></Link>
-        <h5>{author.name} {!author.followed ? this.renderFollowButton() : ''}</h5>
+        <h5>{author.name} {this.renderFollowButton()}</h5>
         <h6>{author.institution}</h6>
         <h6>{date}</h6>
         <p>{snippet}</p>
