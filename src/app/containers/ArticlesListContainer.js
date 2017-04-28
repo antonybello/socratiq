@@ -6,30 +6,20 @@ const mapStateToProps = (state, currentProps) => {
   return {
     isAuthenticated: state.user.status === 'authenticated',
     token: state.user.token,
-    articlesList: state.articles.articlesList,
-    tag: currentProps.tag
+    articlesList: state.articles.articlesList
   };
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+  let filters = {};
+  if (ownProps.tag) {
+    filters.tag = ownProps.tag
+  };
   return {
-    fetchArticlesForTag: (tag) => {
+    filters: filters,
+    fetchArticles: (filters) => {
       return new Promise (() => {
-        let response = dispatch(fetchArticlesForTag(tag));  
-        response.payload.then((payload) => {
-          if(payload.status != 200) {
-              dispatch(fetchArticlesFailure(payload.data));
-          } else {
-              dispatch(fetchArticlesSuccess(payload.data))
-          }
-        }).catch((error) => {
-          dispatch(fetchArticlesFailure(payload));
-        });
-      });
-    },
-    fetchArticles: () => {
-      return new Promise (() => {
-        let response = dispatch(fetchArticles());  
+        let response = dispatch(fetchArticles(filters));  
         response.payload.then((payload) => {
           if(payload.status != 200) {
               dispatch(fetchArticlesFailure(payload.data));

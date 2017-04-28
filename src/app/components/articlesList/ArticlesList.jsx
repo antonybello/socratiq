@@ -3,12 +3,14 @@ import { Link } from 'react-router';
 import ArticleCard from '../articleCard/ArticleCard';
 
 export default class ArticlesList extends Component {
+
   componentWillMount() {
-    if (this.props.tag) {
-      this.props.fetchArticlesForTag(this.props.tag);
-    }
-    else {
-      this.props.fetchArticles();
+    this.props.fetchArticles(this.props.filters);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.filters != nextProps.filters) {
+      this.props.fetchArticles(nextProps.filters);
     }
   }
 
@@ -36,7 +38,6 @@ export default class ArticlesList extends Component {
     } else if(error) {
       return <div className="alert alert-danger">Error: {error.message}</div>
     }
-
     return (
       <div>
           {this.renderArticles(articles)}

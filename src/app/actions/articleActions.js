@@ -12,22 +12,11 @@ const ROOT_URL = 'https://socratiq-app.appspot.com';
 
 
 // TODO: Get legit token from state and add to request headers
-export function fetchArticles() {
+export function fetchArticles(filters) {
+  console.log(`fetching articles for tag: ${filters.tag}`);
   const request = axios({
     method: 'get',
-    url: `${ROOT_URL}/articles`
-  });
-
-  return {
-    type: FETCH_ARTICLES,
-    payload: request
-  };
-}
-
-export function fetchArticlesForTag(tag) {
-  const request = axios({
-    method: 'get',
-    url: `${ROOT_URL}/tags/${tag}/articles`
+    url: filters.tag ? `${ROOT_URL}/tags/${filters.tag}/articles` : `${ROOT_URL}/articles`
   });
 
   return {
