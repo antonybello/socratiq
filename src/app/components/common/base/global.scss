@@ -143,6 +143,16 @@ a, a:hover, a:active, a:visited, a:focus {
 
   .main-container {
     margin-bottom: 40px;
+    h3 {
+      margin-top: 0em;
+      padding-bottom: .25em;
+    }
+  }
+
+  .header-line {
+    width: 40em;
+    margin-bottom: 2.5em;
+    border-bottom: 3px solid $border-bottom-grey;
   }
 
   .white-bg {

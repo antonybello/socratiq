@@ -14,7 +14,7 @@ export default class ArticleViewBox extends Component {
   renderTags(tags) {
     return tags.map((t, i) => {
       return (
-        <li key={i} className="tag"><Link to="/">{t}</Link></li>
+        <li key={i} className="tag"><Link to={`/tag/${t}`}>{t}</Link></li>
       )
     });
   }
