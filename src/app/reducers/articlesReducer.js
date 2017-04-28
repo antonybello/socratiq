@@ -20,7 +20,7 @@ export default function(state = INITIAL_STATE, action) {
   case FETCH_ARTICLES_SUCCESS:// return list of articles and make loading = false
    return { ...state, articlesList: {articles: action.payload, error:null, loading: false} };
   case FETCH_ARTICLES_FAILURE:// return error and make loading = false
-   error = action.payload || {message: action.payload.message};//2nd one is network or server down errors
+   error = action.payload || {message: action.payload.message};
    return { ...state, articlesList: {articles: [], error: error, loading: false} };
 
   case FETCH_ARTICLE:
@@ -28,7 +28,7 @@ export default function(state = INITIAL_STATE, action) {
   case FETCH_ARTICLE_SUCCESS:
    return { ...state, activeArticle: {article: action.payload, error:null, loading: false}};
   case FETCH_ARTICLE_FAILURE:
-   error = action.payload || {message: action.payload.message};//2nd one is network or server down errors
+   error = action.payload || {message: action.payload.message};
    return { ...state, activeArticle: {article: null, error:error, loading:false}};
 
   case CREATE_ARTICLE:

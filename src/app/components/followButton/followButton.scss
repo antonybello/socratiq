@@ -1,0 +1,26 @@
+.follow, .unfollow {
+  vertical-align: middle;
+  font-family: 'Roboto';
+  margin-left: 10px;
+  padding: 3px 10px 3px 10px;
+  border: 1.5px solid $accent-link-green;
+  border-radius: 20px;
+}
+
+.follow {
+  background: transparent;
+  color: $accent-link-green;
+  &:hover {
+    color: $accent-link-hover;
+    border-color:  $accent-link-hover;
+    text-decoration: none;
+  }
+}
+
+.unfollow {
+  background:  $accent-link-hover;
+  border-color:  $accent-link-hover;
+  &:hover {
+    text-decoration: none;
+  }
+}

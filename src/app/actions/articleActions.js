@@ -6,18 +6,20 @@ import {
 	DELETE_ARTICLE, DELETE_ARTICLE_SUCCESS, DELETE_ARTICLE_FAILURE
 } from '../constants/ArticleConstants';
 
-// TODO: Add actions for fetch post, create post, delete post
+// TODO: Add actions create post, delete post
 
 const ROOT_URL = 'https://socratiq-app.appspot.com';
 
+export function fetchArticles(filters, token) {
 
-// TODO: Get legit token from state and add to request headers
-export function fetchArticles(filters) {
-  console.log(`fetching articles for tag: ${filters.tag}`);
-  const request = axios({
+	let request = axios({
     method: 'get',
     url: filters.tag ? `${ROOT_URL}/tags/${filters.tag}/articles` : `${ROOT_URL}/articles`
   });
+
+	if (token) {
+		request.headers = { Authorization: token };
+	}
 
   return {
     type: FETCH_ARTICLES,
@@ -40,8 +42,16 @@ export function fetchArticlesFailure(error) {
 }
 
 
-export function fetchArticle(id) {
-  const request = axios.get(`${ROOT_URL}/articles/${id}`);
+export function fetchArticle(id, token) {
+
+	let request = axios({
+		method: 'get',
+		url : `${ROOT_URL}/articles/${id}`
+	});
+
+	if (token) {
+		request.headers = { Authorization: token };
+	}
 
   return {
     type: FETCH_ARTICLE,

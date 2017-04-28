@@ -26,8 +26,6 @@ function validate(values) {
 const validateAndLoginUser = (values, dispatch) => {
   return new Promise ((resolve, reject) => {
        let response = dispatch(signInUser(values));
-       console.log("response:");
-       console.log(response);
        response.payload.then((payload) =>  {
            if (payload.status == 204){
                dispatch(signInUserSuccess(payload, values.userid));

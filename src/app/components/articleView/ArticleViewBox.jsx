@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
+import FollowButton from '../followButton/FollowButton';
 
 export default class ArticleViewBox extends Component {
   static contextTypes = {
@@ -8,7 +9,18 @@ export default class ArticleViewBox extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchArticle(this.props.articleId);
+    this.props.fetchArticle(this.props.articleId, this.props.token);
+  }
+
+  renderFollowButton() {
+    const { isAuthenticated, userid, author } = this.props;
+    if (isAuthenticated) {
+      if (userid !== author.userid) {
+          return (
+            <FollowButton followed={author.followed} onClick={this.handleFollow} />
+          );
+      }
+    }
   }
 
   renderTags(tags) {
@@ -30,8 +42,8 @@ export default class ArticleViewBox extends Component {
     }
     return (
       <div className="article-container">
-        <h2>{article.title}</h2>
-        <h4>{article.author.name}</h4>
+        <h3>{article.title}</h3>
+        <h5>{article.author.name} {this.renderFollowButton()}</h5>
         <h5>{article.author.institution}</h5>
         <p>{article.content}</p>
         <ul className="tags list-inline">
