@@ -17,6 +17,20 @@ h5, h6 {
     width: 50em;
     margin-bottom: 40px;
     float: right;
+
+.read-more {
+    margin-top: 0em;
+    padding-right: 15px;
+    text-decoration: underline;
+    float: right;
+    letter-spacing: .5px;
+  a {
+    color: $fade-text-grey;
+    font-weight: 400;
+    &:hover {
+      color: $subtext-text-grey;
+    }
+  }
 }
 
 .tags, span {
@@ -24,6 +38,8 @@ h5, h6 {
 }
 
 .tags {
+    margin-top: 2em;
+    margin-bottom: 0em;
     margin-left: 0px;
     float: left;
     .tag {
@@ -34,17 +50,4 @@ h5, h6 {
       margin-bottom: 10px;
     }
 }
-
-.read-more {
-  margin-top: .5em;
-  text-decoration: underline;
-  float: right;
-  letter-spacing: .5px;
-  a {
-    color: $fade-text-grey;
-    font-weight: 400;
-    &:hover {
-      color: $subtext-text-grey;
-    }
-  }
 }

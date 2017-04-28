@@ -10,7 +10,7 @@ import FollowButton from '../followButton/FollowButton';
 // TODO: Change the text of the button, but send a request in background
 //       so we don't need to wait on db for UI update.
 
-// TODO: Potentially add another field allowing for toggle of text..? 
+// TODO: Potentially add another field allowing for toggle of text..?
 
 export default class ArticleCard extends Component {
   renderTags(tags) {
@@ -41,10 +41,10 @@ export default class ArticleCard extends Component {
         <h6>{author.institution}</h6>
         <h6>{date}</h6>
         <p>{snippet}</p>
+        <span className="read-more"><Link to={`article/${id}`}>Read more...</Link></span>
         <ul className="tags list-inline">
           Tags: {this.renderTags(tags)}
         </ul>
-        <span className="read-more"><Link to={`article/${id}`}>Read more...</Link></span>
       </div>
     );
   }
