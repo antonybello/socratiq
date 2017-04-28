@@ -36,7 +36,7 @@ export default class ArticlesList extends Component {
     if(loading) {
       return <div><h3>Loading...</h3></div>
     } else if(error) {
-      return <div className="alert alert-danger">Error: {error.message}</div>
+      return <div><h5>{error.message}</h5></div>
     }
     return (
       <div>

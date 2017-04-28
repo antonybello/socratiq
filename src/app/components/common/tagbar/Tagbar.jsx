@@ -8,10 +8,10 @@ export default class Tagbar extends Component {
           <div className="container">
             <ul className="nav navbar-nav navbar-left">
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/searchResults">Academic</Link></li>
-                <li><Link to="/searchResults">Social</Link></li>
-                <li><Link to="/searchResults">Politics</Link></li>
-                <li><Link to="/searchResults">Election</Link></li>
+                <li><Link to="/tag/academics">Academic</Link></li>
+                <li><Link to="/tag/social">Social</Link></li>
+                <li><Link to="/tag/politics">Politics</Link></li>
+                <li><Link to="/tag/election">Election</Link></li>
               </ul>
             </div>
         </nav>

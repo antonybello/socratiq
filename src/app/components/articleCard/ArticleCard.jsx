@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
-// TODO: Add dispatcher and actions to the article onClick Link
 // TODO: Add dispatcher and actions to the follow onClick Link
 //       We could make the follow button a component with state
 //       depending on whether or not we follow the rendered author

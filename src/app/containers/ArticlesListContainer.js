@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     filters: filters,
     fetchArticles: (filters) => {
       return new Promise (() => {
-        let response = dispatch(fetchArticles(filters));  
+        let response = dispatch(fetchArticles(filters));
         response.payload.then((payload) => {
           if(payload.status != 200) {
               dispatch(fetchArticlesFailure(payload.data));
@@ -27,7 +27,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
               dispatch(fetchArticlesSuccess(payload.data))
           }
         }).catch((error) => {
-          dispatch(fetchArticlesFailure(payload));
+          let errorMessage;
+          if (error.response.status === 404) {
+            errorMessage = {message: `No articles found for ${filters.tag}.`}
+          } else {
+            errorMessage = error;
+          }
+          dispatch(fetchArticlesFailure(errorMessage));
         });
       });
     }
