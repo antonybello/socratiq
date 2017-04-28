@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
-import { fetchArticles, fetchArticlesSuccess, fetchArticlesFailure } from '../actions/articleActions';
+import { fetchArticles, fetchArticlesForTag, fetchArticlesSuccess, fetchArticlesFailure } from '../actions/articleActions';
 import ArticlesList from '../components/articlesList/ArticlesList';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, currentProps) => {
   return {
     isAuthenticated: state.user.status === 'authenticated',
     token: state.user.token,
@@ -10,11 +10,16 @@ const mapStateToProps = (state) => {
   };
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+  let filters = {};
+  if (ownProps.tag) {
+    filters.tag = ownProps.tag
+  };
   return {
-    fetchArticles: () => {
+    filters: filters,
+    fetchArticles: (filters) => {
       return new Promise (() => {
-        let response = dispatch(fetchArticles());
+        let response = dispatch(fetchArticles(filters));  
         response.payload.then((payload) => {
           if(payload.status != 200) {
               dispatch(fetchArticlesFailure(payload.data));
