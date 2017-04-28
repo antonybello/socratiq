@@ -5,7 +5,11 @@
 }
 
 .article-container {
-  padding: 10px 30px 40px 30px;
+  overflow: hidden;
+  padding: 10px 30px 20px 30px;
+  ul {
+    list-style-position: inside;
+  }
   .tags {
     margin-left: 0px;
     font-size: 12px;
@@ -13,6 +17,7 @@
     .tag {
       background: #eeeeee;
       margin-left: 10px;
+      margin-bottom: 10px;
       border-radius: 4px;
       padding: 4px;
     }
