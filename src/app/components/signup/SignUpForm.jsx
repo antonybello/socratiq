@@ -6,7 +6,7 @@ import {Typeahead} from 'react-bootstrap-typeahead';
 import renderField from '../common/base/renderField';
 import { schools } from '../../constants/schools';
 import { schoolsMap } from '../../constants/schoolsMap'
-import { signUpUser, signUpUserSuccess, signUpUserFailure, } from '../../actions/userActions';
+import { signUpUser, signUpUserSuccess, signUpUserFailure } from '../../actions/userActions';
 
 class SignUpForm extends Component {
   static contextTypes = {

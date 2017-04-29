@@ -1,6 +1,8 @@
 import {
 	SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE, RESET_USER,
-	SIGNIN_USER, SIGNIN_USER_SUCCESS,  SIGNIN_USER_FAILURE,
+	SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILURE,
+	FOLLOW_USER, FOLLOW_USER_SUCCESS, FOLLOW_USER_FAILURE,
+	UNFOLLOW_USER, UNFOLLOW_USER_SUCCESS, UNFOLLOW_USER_FAILURE,
 	LOGOUT_USER
 } from '../constants/AppConstants';
 
@@ -19,30 +21,44 @@ export default function(state = INITIAL_STATE, action) {
   let error, authToken;
   switch(action.type) {
 
-    case SIGNUP_USER:// sign up user, set loading = true and status = signup
+    case SIGNUP_USER:
       return assign({ ...state, status:'signup', token: null, error:null, loading: true, userid: null});
-    case SIGNUP_USER_SUCCESS://return user, status = authenticated and make loading = false
+    case SIGNUP_USER_SUCCESS:
 			authToken = action.payload.headers.authorization;
       return assign({ ...state, status:'authenticated', token: authToken, loading: false, userid: action.userid});
-    case SIGNUP_USER_FAILURE:// return error and make loading = false
-      error = action.payload.data || {message: action.payload.message};//2nd one is network or server down errors
+    case SIGNUP_USER_FAILURE:
+      error = action.payload.data || {message: action.payload.message};
       return assign({ ...state, status:'signup', token: null, error:error, loading: false, userid: null});
 
-
-    case SIGNIN_USER:// sign in user,  set loading = true and status = signin
+    case SIGNIN_USER:
       return assign({ ...state, status:'signin', token: null, error:null, loading: true, userid: null});
-    case SIGNIN_USER_SUCCESS://return authenticated user,  make loading = false and status = authenticated
+    case SIGNIN_USER_SUCCESS:
 			authToken = action.payload.headers.authorization;
-			console.log(action.userid);
-      return assign({ ...state, status:'authenticated', token: authToken, error:null, loading: false, userid: action.userid}); //<-- authenticate)d
-    case SIGNIN_USER_FAILURE:// return error and make loading = false
-      error = action.payload.data || {message: action.payload.message};//2nd one is network or server down errors
+      return assign({ ...state, status:'authenticated', token: authToken, error:null, loading: false, userid: action.userid});
+    case SIGNIN_USER_FAILURE:
+      error = action.payload.data || {message: action.payload.message};
       return assign({ ...state, status:'signin', token: null, error:error, loading: false, userid: null});
+
+		case FOLLOW_USER:
+			return assign({ ...state, status:'follow', error:null, loading: false, userid: null});
+		case FOLLOW_USER_SUCCESS:
+			return assign({ ...state, status:'follow', error:null, loading: false, userid: null});
+		case FOLLOW_USER_FAILURE:
+			error = action.payload.data || {message: action.payload.message};
+			return assign({ ...state, status:'follow', error:error, loading: false, userid: null});
+
+		case UNFOLLOW_USER:
+			return assign({ ...state, status:'unfollow', error:null, loading: false, userid: null});
+		case UNFOLLOW_USER_SUCCESS:
+			return assign({ ...state, status:'unfollow', error:null, loading: false, userid: null});
+		case UNFOLLOW_USER_FAILURE:
+			error = action.payload.data || {message: action.payload.message};
+			return assign({ ...state, status:'unfollow', error:error, loading: false, userid: null});
 
     case LOGOUT_USER:
       return assign({...state, status:'logout', token: null, error:null, loading: false, userid: null});
 
-    case RESET_USER:// reset authenticated user to initial state
+    case RESET_USER:
       return assign({ ...state, status:null, token: null, error:null, loading: false, userid: null});
 
     default:
