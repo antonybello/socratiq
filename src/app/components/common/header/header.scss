@@ -20,6 +20,12 @@
      }
 }
 
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: $main-header-blue;
+}
+
+
 .nav-container {
   margin-top: 25px;
   width: 100%;
