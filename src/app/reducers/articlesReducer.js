@@ -1,7 +1,7 @@
 import {
 	FETCH_ARTICLES, FETCH_ARTICLES_SUCCESS, FETCH_ARTICLES_FAILURE,
 	FETCH_ARTICLE, FETCH_ARTICLE_SUCCESS,  FETCH_ARTICLE_FAILURE,
-	CREATE_ARTICLE, CREATE_ARTICLE_SUCCESS, CREATE_ARTICLE_FAILURE,
+	POST_ARTICLE, POST_ARTICLE_SUCCESS, POST_ARTICLE_FAILURE, RESET_POST_ARTICLE,
 	DELETE_ARTICLE, DELETE_ARTICLE_SUCCESS, DELETE_ARTICLE_FAILURE
 } from '../constants/ArticleConstants';
 
@@ -33,13 +33,15 @@ export default function(state = INITIAL_STATE, action) {
    error = action.payload || {message: action.payload.message};
    return assign({ ...state, activeArticle: {article: null, error:error, loading:false} });
 
-  case CREATE_ARTICLE:
+  case POST_ARTICLE:
   	return assign({...state, newArticle: {...state.newArticle, loading: true}});
-  case CREATE_ARTICLE_SUCCESS:
+  case POST_ARTICLE_SUCCESS:
   	return assign({...state, newArticle: {article:action.payload, error:null, loading: false}});
-  case CREATE_ARTICLE_FAILURE:
+  case POST_ARTICLE_FAILURE:
     error = action.payload || {message: action.payload.message};
   	return assign({...state, newArticle: {article:null, error:error, loading: false}});
+	case RESET_POST_ARTICLE:
+		return assign({...state, newArticle: {article:null, error:null, loading: false}});
   default:
     return state;
 

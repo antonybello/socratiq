@@ -24,7 +24,7 @@ export default class Header extends Component {
       return (
         <ul className="nav navbar-nav navbar-right">
           <li>
-            <Link to="/new-story">New post</Link>
+            <Link to="/new">New post</Link>
           </li>
           <li>
             <Link to="/" onClick={this.props.logout}>Log out</Link>

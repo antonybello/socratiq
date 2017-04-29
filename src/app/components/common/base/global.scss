@@ -60,7 +60,11 @@ a, a:hover, a:active, a:visited, a:focus {
           border-radius: 0;
           font-family: 'Roboto';
           background: $background-white;
-
+          .bootstrap-tokenizer {
+            .token, .token-removeable {
+              display: inline;
+            }
+          }
       }
       form h2{
           text-transform: uppercase;

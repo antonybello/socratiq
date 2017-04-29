@@ -2,11 +2,9 @@ import axios from 'axios';
 import {
 	FETCH_ARTICLES, FETCH_ARTICLES_SUCCESS, FETCH_ARTICLES_FAILURE,
 	FETCH_ARTICLE, FETCH_ARTICLE_SUCCESS,  FETCH_ARTICLE_FAILURE,
-	CREATE_ARTICLE, CREATE_ARTICLE_SUCCESS, CREATE_ARTICLE_FAILURE,
+	POST_ARTICLE, POST_ARTICLE_SUCCESS, POST_ARTICLE_FAILURE, RESET_POST_ARTICLE,
 	DELETE_ARTICLE, DELETE_ARTICLE_SUCCESS, DELETE_ARTICLE_FAILURE
 } from '../constants/ArticleConstants';
-
-// TODO: Add actions create post, delete post
 
 const ROOT_URL = 'https://socratiq-app.appspot.com';
 
@@ -71,4 +69,40 @@ export function fetchArticleFailure(error) {
     type: FETCH_ARTICLE_FAILURE,
     payload: error
   };
+}
+
+export function postArticle(formValues, token) {
+	const request = axios({
+	  method: 'post',
+		url: `${ROOT_URL}/articles`,
+		data: formValues,
+		withCredentials: true,
+		headers: { 'Authorization': token }
+	})
+
+  return {
+    type: POST_ARTICLE,
+    payload: request
+  };
+}
+
+
+export function postArticleSuccess(newArticle) {
+  return {
+    type: POST_ARTICLE_SUCCESS,
+    payload: newArticle
+  };
+}
+
+export function postArticleFailure(error) {
+  return {
+    type: POST_ARTICLE_FAILURE,
+    payload: error
+  };
+}
+
+export function resetPostArticle() {
+	return {
+		type: RESET_POST_ARTICLE
+	}
 }

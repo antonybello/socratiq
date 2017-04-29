@@ -19,15 +19,16 @@ class SignUpForm extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.status === 'authenticated') {
-      this.context.router.push('/auth-proof');
+      this.context.router.push('/');
     }
   }
 
   render() {
     const {handleSubmit, submitting, validate} = this.props;
+    const typeAheadOptions = { options: schools };
     return (
       <div className='form-container'>
-        <form onSubmit={handleSubmit(validateAndSignUpUser) }>
+        <form onSubmit={handleSubmit(validateAndSignUpUser)}>
           <Field
                  autoFocus="autoFocus"
                  name="name"
@@ -44,7 +45,7 @@ class SignUpForm extends Component {
                  type="text"
                  typeahead="typeahead"
                  component={ renderField }
-                 options={schools}
+                 typeAheadOptions={typeAheadOptions}
                  label="choose an institution..." />
           <Field
                  name="email"
