@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
-import FollowButton from '../followButton/FollowButton';
+import FollowButtonContainer from '../../containers/FollowButtonContainer';
 
 // TODO: Add dispatcher and actions to the follow onClick Link
 //       We could make the follow button a component with state
@@ -22,12 +22,12 @@ export default class ArticleCard extends Component {
   }
 
   renderFollowButton() {
-    const { isAuthenticated, userid, author } = this.props;
+    const { isAuthenticated, userid, token, author } = this.props;
     if (isAuthenticated) {
       if (userid !== author.userid) {
-          return (
-            <FollowButton followed={author.followed} onClick={this.handleFollow} />
-          );
+        return (
+          <FollowButtonContainer followed={author.followed} userid={userid} authorid={author.userid} token={token} />
+        );
       }
     }
   }
@@ -36,12 +36,12 @@ export default class ArticleCard extends Component {
     const { author, id, title, date, snippet, tags } = this.props;
     return(
       <div className="container card">
-        <Link to={`article/${id}`}><h4>{title}</h4></Link>
+        <Link to={`/article/${id}`}><h4>{title}</h4></Link>
         <h5>{author.name} {this.renderFollowButton()}</h5>
         <h6>{author.institution}</h6>
         <h6>{date}</h6>
         <p>{snippet}</p>
-        <span className="read-more"><Link to={`article/${id}`}>Read more...</Link></span>
+        <span className="read-more"><Link to={`/article/${id}`}>Read more...</Link></span>
         <ul className="tags list-inline">
           Tags: {this.renderTags(tags)}
         </ul>

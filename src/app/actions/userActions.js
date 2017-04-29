@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 import { SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE, RESET_USER,
-         SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILURE, LOGOUT_USER} from '../constants/AppConstants';
+         SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILURE, LOGOUT_USER,
+         FOLLOW_USER, FOLLOW_USER_SUCCESS, FOLLOW_USER_FAILURE,
+         UNFOLLOW_USER, UNFOLLOW_USER_SUCCESS, UNFOLLOW_USER_FAILURE } from '../constants/AppConstants';
 
 const ROOT_URL = 'https://socratiq-app.appspot.com';
 
@@ -47,7 +49,7 @@ export function resetUser() {
 
 export function signInUser(formValues) {
   const request = axios.post(`${ROOT_URL}/login`, formValues);
-  console.log(formValues);
+
   return {
     type: SIGNIN_USER,
     payload: request
@@ -65,6 +67,60 @@ export function signInUserSuccess(user, username) {
 export function signInUserFailure(error) {
   return {
     type: SIGNIN_USER_FAILURE,
+    payload: error
+  };
+}
+
+export function followUser(userid, authorid, token) {
+  const request = axios({
+    method: 'put',
+    url: `${ROOT_URL}/users/${authorid}/followers/${userid}`,
+    headers: { 'Authorization': token },
+    withCredentials: true
+  });
+
+  return {
+    type: FOLLOW_USER,
+    payload: request
+  };
+}
+
+export function followUserSuccess() {
+  return {
+    type: FOLLOW_USER_SUCCESS
+  }
+}
+
+export function followUserFailure(error) {
+  return {
+    type: FOLLOW_USER_FAILURE,
+    payload: error
+  }
+}
+
+export function unfollowUser(userid, authorid, token) {
+  const request = axios({
+    method: 'delete',
+    url: `${ROOT_URL}/users/${authorid}/followers/${userid}`,
+    headers: { 'Authorization': token },
+    withCredentials: true
+  });
+
+  return {
+    type: UNFOLLOW_USER,
+    payload: request
+  };
+}
+
+export function unfollowUserSuccess() {
+  return {
+    type: UNFOLLOW_USER_SUCCESS
+  };
+}
+
+export function unfollowUserFailure(error) {
+  return {
+    type: UNFOLLOW_USER_FAILURE,
     payload: error
   };
 }
