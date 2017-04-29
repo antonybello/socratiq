@@ -13,12 +13,15 @@ export default class ArticleViewBox extends Component {
   }
 
   renderFollowButton() {
-    const { isAuthenticated, userid, author } = this.props;
+    const { isAuthenticated, userid, author, token } = this.props;
+    console.log(this.props);
     if (isAuthenticated) {
       if (userid !== author.userid) {
+        if (author.followed === true || author.followed === false) {
           return (
-            <FollowButton followed={author.followed} onClick={this.handleFollow} />
+            <FollowButton followed={author.followed} userid={userid} authorid={author.userid} token={token} />
           );
+        }
       }
     }
   }

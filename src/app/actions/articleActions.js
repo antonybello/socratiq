@@ -42,19 +42,19 @@ export function fetchArticlesFailure(error) {
 
 
 export function fetchArticle(id, token) {
-
-	let request = axios({
-		method: 'get',
-		url : `${ROOT_URL}/articles/${id}`
-	});
+	let request = {
+	  method: 'get',
+		url : `${ROOT_URL}/articles/${id}`,
+		withCredentials: true
+	}
 
 	if (token) {
-		request.headers = { Authorization: token };
+		request.headers = { 'Authorization': token };
 	}
 
   return {
     type: FETCH_ARTICLE,
-    payload: request
+    payload: axios(request)
   };
 }
 
