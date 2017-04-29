@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
-import FollowButton from '../followButton/FollowButton';
+import FollowButtonContainer from '../../containers/FollowButtonContainer';
 
 export default class ArticleViewBox extends Component {
   static contextTypes = {
@@ -14,14 +14,11 @@ export default class ArticleViewBox extends Component {
 
   renderFollowButton() {
     const { isAuthenticated, userid, author, token } = this.props;
-    console.log(this.props);
     if (isAuthenticated) {
       if (userid !== author.userid) {
-        if (author.followed === true || author.followed === false) {
-          return (
-            <FollowButton followed={author.followed} userid={userid} authorid={author.userid} token={token} />
-          );
-        }
+        return (
+          <FollowButtonContainer followed={author.followed} userid={userid} authorid={author.userid} token={token} />
+        );
       }
     }
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
-import FollowButton from '../followButton/FollowButton';
+import FollowButtonContainer from '../../containers/FollowButtonContainer';
 
 // TODO: Add dispatcher and actions to the follow onClick Link
 //       We could make the follow button a component with state
@@ -25,11 +25,9 @@ export default class ArticleCard extends Component {
     const { isAuthenticated, userid, token, author } = this.props;
     if (isAuthenticated) {
       if (userid !== author.userid) {
-        if (author.followed === true || author.followed === false) {
-          return (
-            <FollowButton followed={author.followed} userid={userid} authorid={author.userid} token={token} />
-          );
-        }
+        return (
+          <FollowButtonContainer followed={author.followed} userid={userid} authorid={author.userid} token={token} />
+        );
       }
     }
   }

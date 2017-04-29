@@ -40,20 +40,20 @@ export default function(state = INITIAL_STATE, action) {
       return assign({ ...state, status:'signin', token: null, error:error, loading: false, userid: null});
 
 		case FOLLOW_USER:
-			return assign({ ...state, status:'follow', error:null, loading: false, userid: null});
+			return assign({ ...state, error:null, loading: false });
 		case FOLLOW_USER_SUCCESS:
-			return assign({ ...state, status:'follow', error:null, loading: false, userid: null});
+			return assign({ ...state, error:null, loading: false });
 		case FOLLOW_USER_FAILURE:
 			error = action.payload.data || {message: action.payload.message};
-			return assign({ ...state, status:'follow', error:error, loading: false, userid: null});
+			return assign({ ...state, error:error, loading: false });
 
 		case UNFOLLOW_USER:
-			return assign({ ...state, status:'unfollow', error:null, loading: false, userid: null});
+			return assign({ ...state, error:null, loading: false });
 		case UNFOLLOW_USER_SUCCESS:
-			return assign({ ...state, status:'unfollow', error:null, loading: false, userid: null});
+			return assign({ ...state, error:null, loading: false });
 		case UNFOLLOW_USER_FAILURE:
 			error = action.payload.data || {message: action.payload.message};
-			return assign({ ...state, status:'unfollow', error:error, loading: false, userid: null});
+			return assign({ ...state, error:error, loading: false });
 
     case LOGOUT_USER:
       return assign({...state, status:'logout', token: null, error:null, loading: false, userid: null});
