@@ -1,7 +1,7 @@
 {
-  "name": "express-react-redux-starter",
+  "name": "Socratiq",
   "version": "1.1.0",
-  "description": "Starter for Express, React, Redux, SCSS applications",
+  "description": "Social media, article publishing app",
   "scripts": {
     "dev": "webpack-dev-server --watch --colors",
     "build": "rimraf dist && NODE_ENV=production webpack --colors",
@@ -25,9 +25,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DimitriMikadze/express-react-redux-starter"
+    "url": "git+https://github.com/antonybello/socratiq"
   },
-  "author": "Dimitri Mikadze",
+  "author": "Antony Bello",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.8.0",
