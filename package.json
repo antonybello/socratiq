@@ -20,7 +20,6 @@
     "Webpack Devevelopment configuration",
     "Webpack Production configuration",
     "Airbnb Eslint",
-    "pm2",
     "mocha",
     "chai"
   ],
