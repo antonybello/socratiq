@@ -31,7 +31,7 @@ class ArticlePostBox extends Component {
     } else {
       return (
       <div className="alert alert-danger">
-      You must be signed in to post an article.
+        You must be signed in to post an article.
       </div>);
     }
   }
@@ -46,41 +46,46 @@ class ArticlePostBox extends Component {
         typeahead:"typeahead",
         allowNew: true,
         multiple: true,
-        newSelectionPrefix:"Add new tag ",
+        newSelectionPrefix:"Add new tag: ",
         options: []
       };
       return (
-        <div className='form-container'>
-          <form onSubmit={handleSubmit((values,dispatch)=>{post(values, token, dispatch);})}>
-            <Field
-                   autoFocus="autoFocus"
-                   name="title"
-                   type="text"
-                   component={ renderField }
-                   label="title" />
-            <Field
-                   name="content"
-                   type="text"
-                   component={ renderTextArea }
-                   label="enter content..." />
-            <Field
-                   name="tags"
-                   type="input"
-                   typeahead="typeahead"
-                   typeAheadOptions={typeAheadOptions}
-                   component={ renderField }
-                   label="add tags..." />
-              <button
-                      type="submit"
-                      className="btn btn-primary"
-                      disabled={ submitting }>
-                Post
-              </button>
-              <Link
-                    to="/"
-                    className="btn btn-error"> Cancel
-              </Link>
-          </form>
+        <div>
+          <h3 className="page-title">New Article</h3>
+          <div className='form-container'>
+            <form onSubmit={handleSubmit((values,dispatch)=>{post(values, token, dispatch);})}>
+              <Field
+                     autoFocus="autoFocus"
+                     name="title"
+                     type="text"
+                     className="article-title"
+                     component={ renderField }
+                     label="title" />
+              <Field
+                     name="content"
+                     type="text"
+                     className="content"
+                     component={ renderTextArea }
+                     label="enter content..." />
+              <Field
+                     name="tags"
+                     type="input"
+                     typeahead="typeahead"
+                     typeAheadOptions={typeAheadOptions}
+                     component={ renderField }
+                     label="add tags..." />
+                <button
+                        type="submit"
+                        className="btn btn-primary"
+                        disabled={ submitting }>
+                  Post
+                </button>
+                <Link
+                      to="/"
+                      className="btn btn-error"> Cancel
+                </Link>
+            </form>
+          </div>
         </div>
       );
     }
@@ -108,13 +113,13 @@ const validate = (values) => {
   const errors = {};
 
   if (!values.title || values.title.trim() === '') {
-    errors.title = 'Enter a Title';
+    errors.title = 'enter a title';
   }
   if (!values.tags || values.tags.length == 0) {
-    errors.tags = 'Add at least one tag';
+    errors.tags = 'add at least one tag';
   }
   if (!values.content || values.content.trim() === '') {
-    errors.content = 'Enter some content';
+    errors.content = 'enter some content';
   }
 
   return errors;
