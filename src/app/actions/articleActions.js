@@ -9,15 +9,16 @@ import {
 const ROOT_URL = 'https://socratiq-app.appspot.com';
 
 export function fetchArticles(filters, token) {
-	let request = {
+  let request = {
     method: 'get',
-    url: filters.tag ? `${ROOT_URL}/tags/${filters.tag}/articles` : `${ROOT_URL}/articles`,
-		withCredentials: true
+    url: `${ROOT_URL}/articles`,
+    withCredentials: true,
+    params: filters
   };
 
-	if (token) {
-		request.headers = { 'Authorization': token };
-	}
+  if (token) {
+    request.headers = { 'Authorization': token };
+  }
   return {
     type: FETCH_ARTICLES,
     payload: axios(request)

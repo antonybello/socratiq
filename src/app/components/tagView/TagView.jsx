@@ -7,7 +7,7 @@ export default class TagView extends Component {
       <div className="main-container">
         <h3>Articles about {this.props.params.id}</h3>
         <div className="header-line"></div>
-        <ArticlesListContainer tag={this.props.params.id}/>
+        <ArticlesListContainer filters={{tag: this.props.params.id}}/>
       </div>
     );
   }

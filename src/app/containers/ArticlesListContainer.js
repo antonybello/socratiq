@@ -12,12 +12,8 @@ const mapStateToProps = (state, currentProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  let filters = {};
-  if (ownProps.tag) {
-    filters.tag = ownProps.tag
-  };
   return {
-    filters: filters,
+    filters: ownProps.filters,
     fetchArticles: (filters, token) => {
       return new Promise (() => {
         let response = dispatch(fetchArticles(filters, token));
