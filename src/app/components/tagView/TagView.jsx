@@ -5,11 +5,14 @@ import FollowButtonContainer from '../../containers/FollowButtonContainer';
 export default class TagView extends Component {
 
   render() {
+    const tag = this.props.params.id;
+    const followee = { id: tag, type: 'tag' };
     return (
       <div className="main main-container">
-        <h3>Articles tagged {this.props.params.id}</h3>
+        <h3>Articles tagged {tag}</h3>
+        <FollowButtonContainer followee={followee}/>
         <div className="header-line"></div>
-        <ArticleListContainer filters={{tag: this.props.params.id}}/>
+        <ArticleListContainer filters={{tag: tag}}/>
       </div>
     );
   }

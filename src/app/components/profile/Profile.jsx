@@ -18,7 +18,7 @@ export default class Profile extends Component {
   }
 
   render() {
-    let { loading, institution, name, followed, tagsFollowed, usersFollowed } = this.props.profile;
+    let { loading, institution, tagsFollowed, name, followed, usersFollowed } = this.props.profile;
     let id = this.props.profileid;
     if (loading) {
       return <div><h3>Loading...</h3></div>

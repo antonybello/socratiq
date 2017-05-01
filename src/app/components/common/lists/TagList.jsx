@@ -4,10 +4,24 @@ import FollowButtonContainer from '../../../containers/FollowButtonContainer';
 
 export default class TagList extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      tagsFollowing: props.authenticatedUser.tagsFollowing
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      tagsFollowing: nextProps.authenticatedUser.tagsFollowing
+    });
+  }
+
   renderFollowButton(tag) {
-    const { status, userid, token } = this.props.authenticatedUser;
-    const followee = { id: tag.tag, followed: tag.followed, type: 'tag' };
+    const { status, userid, token, tagsFollowing } = this.props.authenticatedUser;
     if (status == 'authenticated') {
+      const following = tagsFollowing.includes(tag.tag);
+      const followee = { id: tag.tag, followed: following, type: 'tag' };
       return (
         <FollowButtonContainer followee={followee} userid={userid} token={token} />
       );

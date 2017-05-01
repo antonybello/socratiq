@@ -27,7 +27,7 @@ const validateAndLoginUser = (values, dispatch) => {
   return new Promise ((resolve, reject) => {
        let response = dispatch(signInUser(values));
        response.payload.then((payload) =>  {
-           if (payload.status == 204){
+           if (payload.status == 200){
                dispatch(signInUserSuccess(payload, values.userid));
                resolve();
            } else {
@@ -35,6 +35,7 @@ const validateAndLoginUser = (values, dispatch) => {
                reject(payload.data);
            }
        }).catch((error) => {
+           console.log(error);
            if (error.response.status == 403) {
              alert("Username and password do not match. Try again.");
              dispatch(signInUserFailure(payload));

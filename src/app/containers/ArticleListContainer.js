@@ -18,6 +18,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       return new Promise (() => {
         let response = dispatch(fetchArticles(filters, token));
         response.payload.then((payload) => {
+          console.log("fetched articles");
           if(payload.status != 200) {
               dispatch(fetchArticlesFailure(payload.data));
           } else {
