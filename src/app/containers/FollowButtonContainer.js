@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import * as userActions from '../actions/userActions';
+import * as followActions from '../actions/followActions';
 import FollowButton from '../components/followButton/FollowButton';
 
 const mapStateToProps = (state) => {
@@ -8,41 +8,41 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    follow: (userid, authorid, token) => {
+    follow: (userid, followee, token) => {
       return new Promise (() => {
-           let response = dispatch(userActions.followUser(userid, authorid, token));
+           let response = dispatch(followActions.follow(userid, followee, token));
            response.payload.then((payload) =>  {
                if (payload.status == 201){
-                   dispatch(userActions.followUserSuccess());
+                   dispatch(followActions.followSuccess());
                } else {
-                   dispatch(userActions.followUserFailure(payload));
+                   dispatch(followActions.followFailure(payload));
                }
            }).catch((error) => {
                if (error.response.status == 409) {
-                 dispatch(userActions.followUserFailure(payload));
+                 dispatch(followActions.followFailure(payload));
                } else {
                  alert("Server error");
-                 dispatch(userActions.followUserFailure(payload));
+                 dispatch(followActions.followFailure(payload));
                }
            });
        });
     },
-    unfollow: (userid, authorid, token) => {
+    unfollow: (userid, followee, token) => {
       return new Promise (() => {
-           let response = dispatch(userActions.unfollowUser(userid, authorid, token));
+           let response = dispatch(followActions.unfollow(userid, followee, token));
            response.payload.then((payload) =>  {
                if (payload.status == 204){
-                   dispatch(userActions.unfollowUserSuccess());
+                   dispatch(followActions.unfollowSuccess());
                } else {
-                   dispatch(userActions.unfollowUserFailure(payload));
+                   dispatch(followActions.unfollowFailure(payload));
                }
            }).catch((error) => {
                if (error.response.status == 404) {
-                 console.log(userid + " does not follow " + authorid);
-                 dispatch(userActions.unfollowUserFailure(payload));
+                 console.log(userid + " does not follow " + followee.id);
+                 dispatch(followActions.unfollowFailure(payload));
                } else {
                  alert("Server error");
-                 dispatch(userActions.unfollowUserFailure(payload));
+                 dispatch(followActions.unfollowFailure(payload));
                }
            });
        });

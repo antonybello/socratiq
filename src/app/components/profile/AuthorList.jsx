@@ -7,10 +7,11 @@ export default class AuthorList extends Component {
 
   renderFollowButton(author) {
     const { status, userid, token } = this.props.authenticatedUser;
+    const followee = { id: author.userid, followed: author.followed, type: 'user' };
     if (status == 'authenticated') {
       if (userid !== author.userid) {
         return (
-          <FollowButtonContainer followed={author.followed} userid={userid} authorid={author.userid} token={token} />
+          <FollowButtonContainer followee={followee} userid={userid} token={token} />
         );
       }
     }

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import ArticlesListContainer from '../../containers/ArticlesListContainer';
+import FollowButtonContainer from '../../containers/FollowButtonContainer';
 
 export default class TagView extends Component {
+
   render() {
     return (
       <div className="main main-container">
@@ -11,4 +13,5 @@ export default class TagView extends Component {
       </div>
     );
   }
+
 }

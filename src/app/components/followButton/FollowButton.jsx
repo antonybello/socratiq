@@ -5,7 +5,7 @@ export default class FollowButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      followed: props.followed
+      followed: props.followee.followed
     };
   }
 
@@ -17,15 +17,20 @@ export default class FollowButton extends Component {
   }
 
   toggleFollow() {
-    const { userid, authorid, token } = this.props;
-    this.state.followed ? this.props.unfollow(userid, authorid, token) : this.props.follow(userid, authorid, token);
+    const { userid, followee, token } = this.props;
+    this.state.followed ? this.props.unfollow(userid, followee, token ) 
+                        : this.props.follow(userid, followee, token );
   }
 
   render() {
+    const { type } = this.props.followee;
     return (
       <Link>
         <span onClick={this.handleClick.bind(this)} className={`${this.state.followed ? 'unfollow' : 'follow'}`}>
-          {this.state.followed ? 'Unfollow' : 'Follow'}
+          { type == 'user' ? 
+            ( this.state.followed ? 'Unfollow' : 'Follow' ) :
+            ( this.state.followed ? 'Unfollow Tag' : 'Follow Tag')
+          }
         </span>
       </Link>
     );
