@@ -16,16 +16,18 @@ export default class EntitySelector extends Component {
   }
 
   render() {
+    let paneComponents = React.Children.toArray(this.props.children);
+    let paneNames = paneComponents.map((p) => p.props.name);
     return (
       <div>
         <nav className="navbar tag-nav navbar-default">
           <div className="container">
             <ul className="nav navbar-nav navbar-left">
-              { this.renderLinks(this.props.paneNames) }
+              { this.renderLinks(paneNames) }
             </ul>
           </div>
         </nav>
-        { this.props.selectedPane }
+        { paneComponents.find((p) => p.props.name == this.props.selectedPane) }
       </div>
     )
   }
