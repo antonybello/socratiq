@@ -20,7 +20,6 @@ const mapDispatchToProps = (dispatch) => {
                    dispatch(followActions.followFailure(payload));
                }
            }).catch((error) => {
-               console.log(error);
                if (error.response.status == 409) {
                  dispatch(followActions.followFailure(payload));
                } else {

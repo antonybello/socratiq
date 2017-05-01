@@ -12,18 +12,6 @@ export default class ArticleViewBox extends Component {
     this.props.fetchArticle(this.props.articleId, this.props.token);
   }
 
-  renderFollowButton() {
-    const { isAuthenticated, userid, author, token } = this.props;
-    const followee = { id: author.userid, followed: author.followed, type: 'user' };
-    if (isAuthenticated) {
-      if (userid !== author.userid) {
-        return (
-          <FollowButtonContainer followee={followee} userid={userid} token={token} />
-        );
-      }
-    }
-  }
-
   renderTags(tags) {
     return tags.map((t, i) => {
       return (
@@ -46,7 +34,7 @@ export default class ArticleViewBox extends Component {
         <h3>{article.title}</h3>
         <h5>
           <Link to={`/profile/${article.author.userid}`}>{article.author.name}</Link>
-          { this.renderFollowButton() }
+          <FollowButtonContainer followee={{ id: article.author.userid, type: 'user' }}/>
         </h5>
         <h5>{article.author.institution}</h5>
         <p>{article.content}</p>

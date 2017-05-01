@@ -2,11 +2,8 @@ import { connect } from 'react-redux'
 import { fetchArticles, fetchArticlesForTag, fetchArticlesSuccess, fetchArticlesFailure } from '../actions/articleActions';
 import ArticleList from '../components/common/lists/ArticleList';
 
-const mapStateToProps = (state, currentProps) => {
+const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.user.status === 'authenticated',
-    userid: state.user.userid,
-    token: state.user.token,
     articlesList: state.articles.articlesList
   };
 }

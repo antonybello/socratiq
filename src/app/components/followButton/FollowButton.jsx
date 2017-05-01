@@ -5,20 +5,30 @@ export default class FollowButton extends Component {
   constructor(props) {
     super(props);
     let followed = props.followee.followed;
-    if (props.authenticatedUser.userid && props.followee.type == 'tag') {
-      followed = props.authenticatedUser.tagsFollowing.includes(props.followee.id);
-    }
+    if (props.authenticatedUser.userid) {
+      if (props.followee.type == 'tag') {
+        followed = props.authenticatedUser.tagsFollowing.includes(props.followee.id);
+      } else if (props.followee.type == 'user') {
+        followed = props.authenticatedUser.usersFollowing.includes(props.followee.id);
+      }
+    } 
     this.state = {
       followed: followed
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.authenticatedUser.userid && nextProps.followee.type == 'tag') {
+    if (nextProps.authenticatedUser.userid) {
+      let followed;
+      if (nextProps.followee.type == 'tag') {
+        followed = nextProps.authenticatedUser.tagsFollowing.includes(nextProps.followee.id);
+      } else if (nextProps.followee.type == 'user') {
+        followed = nextProps.authenticatedUser.usersFollowing.includes(nextProps.followee.id);
+      }
       this.setState({
-        followed: nextProps.authenticatedUser.tagsFollowing.includes(nextProps.followee.id)
+        followed: followed
       }); 
-    }  
+    } 
   }
 
   handleClick() {
@@ -36,8 +46,9 @@ export default class FollowButton extends Component {
   }
 
   render() {
-    const { type } = this.props.followee;
-    if (!this.props.authenticatedUser.userid) {
+    const { type, id } = this.props.followee;
+    const { userid } = this.props.authenticatedUser;
+    if (!userid || (type == 'user' && id == userid)) {
       return null;
     }
     return (
