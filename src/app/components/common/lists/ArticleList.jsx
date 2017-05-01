@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import ArticleCard from '../../articleCard/ArticleCard';
 
-export default class ArticlesList extends Component {
+export default class ArticleList extends Component {
 
   componentWillMount() {
     this.props.fetchArticles(this.props.filters, this.props.token);

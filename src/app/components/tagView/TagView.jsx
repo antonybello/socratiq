@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ArticlesListContainer from '../../containers/ArticlesListContainer';
+import ArticleListContainer from '../../containers/ArticleListContainer';
 import FollowButtonContainer from '../../containers/FollowButtonContainer';
 
 export default class TagView extends Component {
@@ -9,7 +9,7 @@ export default class TagView extends Component {
       <div className="main main-container">
         <h3>Articles about {this.props.params.id}</h3>
         <div className="header-line"></div>
-        <ArticlesListContainer filters={{tag: this.props.params.id}}/>
+        <ArticleListContainer filters={{tag: this.props.params.id}}/>
       </div>
     );
   }
