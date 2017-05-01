@@ -15,7 +15,7 @@ export default class TagList extends Component {
   }
 
   renderTags(tags) {
-    tags.map((t, i) => {
+    return tags.map((t, i) => {
       return (
         <div key={i}>
           <li className="author-item">
@@ -33,7 +33,7 @@ export default class TagList extends Component {
     }
     return (
       <div className="white-bg">
-        <ul className="list-unstyled author-list">
+        <ul className="list-unstyled tag-author-list">
           {this.renderTags(this.props.tags)}
         </ul>
       </div>

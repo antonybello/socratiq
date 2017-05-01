@@ -37,7 +37,7 @@ export default class AuthorList extends Component {
     }
     return (
       <div className="white-bg">
-        <ul className="list-unstyled author-list">
+        <ul className="list-unstyled tag-author-list">
           {this.renderAuthors(this.props.authors)}
         </ul>
       </div>
