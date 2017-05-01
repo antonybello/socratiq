@@ -1,0 +1,38 @@
+.profile {
+  margin-top: 8em;
+
+  .profile-header {
+    padding: 2em 3em 1em 3em;
+  }
+
+  .pane-selector {
+    z-index: 999;
+    a {
+      color: $main-text-grey !important;
+    }
+    .selected {
+      padding-bottom: 4px;
+      border-bottom: 3px solid $main-header-blue;
+    }
+    nav {
+      padding: 0 3em 0 2em;
+    }
+  }
+
+  .author-list {
+    padding-bottom: 1em;
+
+    .author-item {
+      padding: 1em 0 1em 0;
+      border-bottom: 2px solid $border-bottom-grey;
+    }
+
+    .name, .follow {
+      margin: 0 2em;
+    }
+
+    .follow {
+      float: right;
+    }
+  }
+}

@@ -4,7 +4,7 @@ import ArticlePostBoxContainer from '../../containers/ArticlePostBoxContainer';
 export default class ArticlePost extends Component {
   render() {
     return (
-      <div className="article white-bg">
+      <div className="article main white-bg">
         <ArticlePostBoxContainer />
       </div>
     );

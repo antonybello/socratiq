@@ -19,19 +19,21 @@ export default class AuthorList extends Component {
 
   render() {
     return (
-      <div>
-        { 
-          this.props.authors.map((a, i) => {
-            return (
-              <div key={i}>
-                <li>
-                  <Link to={`/profile/${a.userid}`}>{a.name}</Link>
-                  { this.renderFollowButton(a) }
-                </li>
-              </div>
-            );
-          })
-        }
+      <div className="white-bg">
+        <ul className="list-unstyled author-list">
+          {
+            this.props.authors.map((a, i) => {
+              return (
+                <div key={i}>
+                  <li className="author-item">
+                    <Link className="name" to={`/profile/${a.userid}`}>{a.name}</Link>
+                    { this.renderFollowButton(a) }
+                  </li>
+                </div>
+              );
+            })
+          }
+        </ul>
       </div>
     );
   }
