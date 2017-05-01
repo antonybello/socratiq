@@ -10,7 +10,7 @@ export default class Tagbar extends Component {
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/tag/Academics">Academic</Link></li>
                 <li><Link to="/tag/Social">Social</Link></li>
-                <li><Link to="/tag/News">Politics</Link></li>
+                <li><Link to="/tag/News">News</Link></li>
                 <li><Link to="/tag/Pomona">Election</Link></li>
               </ul>
             </div>
