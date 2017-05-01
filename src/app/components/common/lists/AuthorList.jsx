@@ -22,7 +22,8 @@ export default class AuthorList extends Component {
         return (
           <div key={i}>
             <li className="author-item">
-              <Link className="name" to={`/profile/${a.userid}`}>{a.name}</Link>
+              <Link className="name" to={`/profile/${a.userid}`}>{a.name} </Link>
+              <span className="institution">{a.institution}</span>
               { this.renderFollowButton(a) }
             </li>
           </div>

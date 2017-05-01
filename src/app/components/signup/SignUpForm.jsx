@@ -6,7 +6,7 @@ import {Typeahead} from 'react-bootstrap-typeahead';
 import renderField from '../common/base/renderField';
 import { schools } from '../../constants/schools';
 import { schoolsMap } from '../../constants/schoolsMap'
-import { signUpUser, signUpUserSuccess, signUpUserFailure } from '../../actions/userActions';
+import { signUpUser, signUpUserSuccess, signUpUserFailure, resetSignUpUser } from '../../actions/userActions';
 
 class SignUpForm extends Component {
   static contextTypes = {
@@ -14,7 +14,7 @@ class SignUpForm extends Component {
   };
 
   componentWillMount() {
-    this.props.resetMe();
+    this.props.resetSignUp();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -23,8 +23,12 @@ class SignUpForm extends Component {
     }
   }
 
+  renderError() {
+    return <div className="form-group error has-error help-block">Username already exists.</div>;
+  }
+
   render() {
-    const {handleSubmit, submitting, validate} = this.props;
+    const {handleSubmit, submitting, validate, error} = this.props;
     const typeAheadOptions = { options: schools };
     return (
       <div className='form-container'>
@@ -63,6 +67,7 @@ class SignUpForm extends Component {
                  component={ renderField }
                  label="confirm password" />
           <div>
+          {error && this.renderError()}
             <button
                     type="submit"
                     className="btn btn-primary"
@@ -94,13 +99,11 @@ const validateAndSignUpUser = (values, dispatch) => {
            }
        }).catch((error) => {
            if (error.response.status == 409) {
-             alert("Username already exists, please try a new one.");
-             dispatch(signUpUserFailure(payload));
-             reject(payload.data);
+             dispatch(signUpUserFailure(error));
+             reject(new SubmissionError({_error: error.response.status}));
            } else {
-             alert("Server error, try again.");
-             dispatch(signUpUserFailure(payload));
-             reject(payload.data);
+             dispatch(signUpUserFailure(error));
+             reject(new SubmissionError({_error: error.response.status}));
            }
 
        });

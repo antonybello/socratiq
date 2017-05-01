@@ -1,11 +1,11 @@
 import LoginForm from '../components/login/LoginForm';
-import { resetValidateUserFields } from '../actions/validateUserFields';
+import { resetSignInUser } from '../actions/userActions';
 import { connect } from 'react-redux';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    resetMe: () => {
-      dispatch(resetValidateUserFields());
+    resetSignIn: () => {
+      dispatch(resetSignInUser());
     }
   }
 }

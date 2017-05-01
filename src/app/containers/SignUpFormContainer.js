@@ -1,11 +1,11 @@
 import SignUpForm from '../components/signup/SignUpForm';
-import { resetValidateUserFields } from '../actions/validateUserFields';
+import { resetSignUpUser } from '../actions/userActions';
 import { connect } from 'react-redux';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    resetMe: () => {
-      dispatch(resetValidateUserFields());
+    resetSignUp: () => {
+      dispatch(resetSignUpUser());
     }
   }
 }
