@@ -32,7 +32,7 @@ export default class Profile extends Component {
           <div name='Articles'>
             <h3>Articles posted by {this.props.profile.name}</h3>
             <div className="header-line"></div>
-            <ArticlesListContainer filters={{ author: id }}/>
+            <ArticlesListContainer suppressFollowButton={true} filters={{ author: id }}/>
           </div>
 
           <div name='Authors'>

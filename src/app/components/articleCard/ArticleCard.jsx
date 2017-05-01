@@ -33,13 +33,13 @@ export default class ArticleCard extends Component {
   }
 
   render() {
-    const { author, id, title, date, snippet, tags } = this.props;
+    const { author, id, title, date, snippet, tags, suppressFollowButton } = this.props;
     return(
       <div className="container card">
         <Link to={`/article/${id}`}><h4>{title}</h4></Link>
         <h5>
           <Link to={`/profile/${author.userid}`}>{author.name}</Link>
-          {this.renderFollowButton()}
+          { (!suppressFollowButton) && this.renderFollowButton()}
         </h5>
         <h6>{author.institution}</h6>
         <h6>{date}</h6>
