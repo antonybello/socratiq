@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import FollowButtonContainer from '../../../containers/FollowButtonContainer';
 
 export default class TagList extends Component {
-  
+
   renderTags(tags) {
     return tags.map((t, i) => {
       return (
@@ -18,6 +18,9 @@ export default class TagList extends Component {
   }
 
   render() {
+    if (this.props.tags === null) {
+      return null;
+    }
     if (this.props.tags.length === 0) {
       return <div><h5>No tags found.</h5></div>;
     }
