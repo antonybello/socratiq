@@ -16,10 +16,9 @@ export default class ProfilePageHeader extends Component {
 
   render() {
     return (
-      <div>
-        <h2>{this.props.name}</h2>
-        <h2>{this.props.institution}</h2>
-        { this.renderFollowButton(this.props.profileid, this.props.followed) }
+      <div className="profile-header white-bg">
+        <h3>{this.props.name} { this.renderFollowButton(this.props.profileid, this.props.followed) } </h3>
+        <h5>{this.props.institution}</h5>
       </div>
     )
   }

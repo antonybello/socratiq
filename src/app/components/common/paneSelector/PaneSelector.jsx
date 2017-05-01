@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 export default class EntitySelector extends Component {
 
@@ -10,7 +11,13 @@ export default class EntitySelector extends Component {
     return panes.map((p) => {
       let onClick = () => this.props.selectPane(p);
       return (
-        <button key={p} onClick={onClick}>{p}</button>
+        <li key={p}>
+          <Link
+            onClick={onClick}
+            className={this.props.selectedPane == p ? 'selected' : ''} >
+            {p}
+          </Link>
+        </li>
       );
     });
   }
@@ -20,16 +27,16 @@ export default class EntitySelector extends Component {
     let paneNames = paneComponents.map((p) => p.props.name);
     return (
       <div>
-        <nav className="navbar tag-nav navbar-default">
-          <div className="container">
+        <div className="pane-selector">
+          <nav className="navbar tag-nav navbar-default">
             <ul className="nav navbar-nav navbar-left">
               { this.renderLinks(paneNames) }
             </ul>
-          </div>
-        </nav>
+          </nav>
+        </div>
         { paneComponents.find((p) => p.props.name == this.props.selectedPane) }
       </div>
-    )
+    );
   }
 
 }
