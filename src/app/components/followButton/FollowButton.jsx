@@ -38,6 +38,7 @@ export default class FollowButton extends Component {
   render() {
     const { type } = this.props.followee;
     if (!this.props.authenticatedUser.userid) {
+      console.log("not rendering tag");
       return null;
     }
     return (

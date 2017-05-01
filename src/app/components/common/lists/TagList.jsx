@@ -3,38 +3,14 @@ import { Link } from 'react-router';
 import FollowButtonContainer from '../../../containers/FollowButtonContainer';
 
 export default class TagList extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      tagsFollowing: props.authenticatedUser.tagsFollowing
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      tagsFollowing: nextProps.authenticatedUser.tagsFollowing
-    });
-  }
-
-  renderFollowButton(tag) {
-    const { status, userid, token, tagsFollowing } = this.props.authenticatedUser;
-    if (status == 'authenticated') {
-      const following = tagsFollowing.includes(tag.tag);
-      const followee = { id: tag.tag, followed: following, type: 'tag' };
-      return (
-        <FollowButtonContainer followee={followee} userid={userid} token={token} />
-      );
-    }
-  }
-
+  
   renderTags(tags) {
-    tags.map((t, i) => {
+    return tags.map((t, i) => {
       return (
         <div key={i}>
           <li className="author-item">
             <Link className="name" to={`/tag/${t.tag}`}>{t.tag}</Link>
-            { this.renderFollowButton(t) }
+            <FollowButtonContainer followee={{ id: tag.tag, type: 'tag' }} />
           </li>
         </div>
       );
