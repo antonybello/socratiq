@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {  
+  return {
     profileid: ownProps.profileid,
     fetchProfile: (profileid, token) => {
       return new Promise (() => {

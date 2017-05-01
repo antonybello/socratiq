@@ -14,22 +14,27 @@ export default class TagList extends Component {
     }
   }
 
+  renderTags(tags) {
+    tags.map((t, i) => {
+      return (
+        <div key={i}>
+          <li className="author-item">
+            <Link className="name" to={`/tag/${t.tag}`}>{t.tag}</Link>
+            { this.renderFollowButton(t) }
+          </li>
+        </div>
+      );
+    });
+  }
+
   render() {
+    if (this.props.tags.length === 0) {
+      return <div><h5>{this.props.name} doesn't follow any tags.</h5></div>;
+    }
     return (
       <div className="white-bg">
         <ul className="list-unstyled author-list">
-          {
-            this.props.tags.map((t, i) => {
-              return (
-                <div key={i}>
-                  <li className="author-item">
-                    <Link className="name" to={`/tag/${t.tag}`}>{t.tag}</Link>
-                    { this.renderFollowButton(t) }
-                  </li>
-                </div>
-              );
-            })
-          }
+          {this.renderTags(this.props.tags)}
         </ul>
       </div>
     );
