@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { fetchArticles, fetchArticlesForTag, fetchArticlesSuccess, fetchArticlesFailure } from '../actions/articleActions';
-import ArticlesList from '../components/articlesList/ArticlesList';
+import ArticleList from '../components/common/lists/ArticleList';
 
 const mapStateToProps = (state, currentProps) => {
   return {
@@ -37,4 +37,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArticlesList);
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleList);

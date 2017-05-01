@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import FollowButtonContainer from '../../containers/FollowButtonContainer';
+import FollowButtonContainer from '../../../containers/FollowButtonContainer';
 import PropTypes from 'prop-types';
 
 export default class AuthorList extends Component {

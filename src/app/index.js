@@ -12,7 +12,7 @@ const store = createStoreWithMiddleware(reducers);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory} routes={routes} />
+    <Router history={browserHistory} routes={routes} />
   </Provider>
   , document.getElementById('react-root')
 );
