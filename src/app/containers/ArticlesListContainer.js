@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { fetchArticles, fetchArticlesForTag, fetchArticlesSuccess, fetchArticlesFailure } from '../actions/articleActions';
-import ArticlesList from '../components/articlesList/ArticlesList';
+import ArticlesList from '../components/common/lists/ArticlesList';
 
 const mapStateToProps = (state, currentProps) => {
   return {

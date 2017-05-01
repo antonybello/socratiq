@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import ArticleCard from '../articleCard/ArticleCard';
+import ArticleCard from '../../articleCard/ArticleCard';
 
 export default class ArticlesList extends Component {
 

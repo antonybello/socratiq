@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ArticlesListContainer from '../../containers/ArticlesListContainer';
 import ProfilePageHeader from './ProfilePageHeader';
-import AuthorList from './AuthorList';
-import TagList from './TagList';
+import AuthorList from '../common/lists/AuthorList';
+import TagList from '../common/lists/TagList';
 import PaneSelectorContainer from '../../containers/PaneSelectorContainer'
 
 export default class Profile extends Component {
