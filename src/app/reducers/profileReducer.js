@@ -4,7 +4,7 @@ import {
 
 
 const INITIAL_STATE = { loading: null, institution: null, name: null, 
-                        tagsFollowed: null, usersFollowed: null };
+                        followed: null, tagsFollowed: null, usersFollowed: null };
 
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
@@ -16,8 +16,9 @@ export default function(state = INITIAL_STATE, action) {
     return { ...state, loading: false,
              name: action.payload.name, 
              institution: action.payload.institution, 
+             followed: action.payload.followed, 
              tagsFollowed: action.payload.tagsFollowed, 
-             usersFollowed: action.payload.usersFollowed };
+             usersFollowed: action.payload.usersFollowed, };
 
   default:
     return state;

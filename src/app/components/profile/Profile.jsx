@@ -18,14 +18,15 @@ export default class Profile extends Component {
   }
 
   render() {
-    let { loading, institution, name, tagsFollowed, usersFollowed } = this.props.profile;
+    let { loading, institution, name, followed, tagsFollowed, usersFollowed } = this.props.profile;
     let id = this.props.profileid;
     if (loading) {
       return <div><h3>Loading...</h3></div>
     }
+
     return (
       <div>
-        <ProfilePageHeader name={name} institution={institution}/>
+        <ProfilePageHeader name={name} profileid={id} followed={followed} institution={institution} authenticatedUser={this.props.authenticatedUser}/>
         <PaneSelectorContainer initiallySelected='Articles'>
 
           <div name='Articles'>
