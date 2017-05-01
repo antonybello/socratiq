@@ -13,16 +13,12 @@ export function fetchArticles(filters, token) {
     method: 'get',
     url: `${ROOT_URL}/articles`,
     withCredentials: true,
+    params: filters
   };
 
   if (token) {
     request.headers = { 'Authorization': token };
-  } else {
-    delete filters.personalized;
   }
-
-  request.params = filters;
-
   return {
     type: FETCH_ARTICLES,
     payload: axios(request)

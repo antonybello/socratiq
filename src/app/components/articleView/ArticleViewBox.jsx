@@ -30,7 +30,7 @@ export default class ArticleViewBox extends Component {
       return <span />
     }
     return (
-      <div className="article-container white-bg">
+      <div className="article-container">
         <h3>{article.title}</h3>
         <h5>
           <Link to={`/profile/${article.author.userid}`}>{article.author.name}</Link>

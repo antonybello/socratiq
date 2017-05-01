@@ -20,9 +20,6 @@ export default class AuthorList extends Component {
   }
 
   render() {
-    if (this.props.authors === null) {
-      return null;
-    }
     if (this.props.authors.length === 0) {
       return <div><h5>No authors found.</h5></div>;
     }
