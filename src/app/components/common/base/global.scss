@@ -84,7 +84,19 @@ h3 {
 }
 .form-container {
   padding: 30px;
-  width: 50em;
+
+  .article-title {
+    font-size: 1.5em;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: $fade-text-grey;
+  }
+
+  .content {
+    height: 20em;
+    overflow: scroll;
+  }
+
   form {
     border-radius: 0;
     font-family: 'Roboto';
@@ -105,7 +117,7 @@ h3 {
     padding: 20px;
     margin: -30px -30px 30px;
   }
-  
+
   form input[type="text"],
   form input[type="date"],
   form input[type="datetime"],
@@ -121,7 +133,7 @@ h3 {
     border-left: none;
     border-right: none;
     border-bottom: 2px solid $background-grey !important;
-    box-shadow: none;
+    box-shadow: none !important;
     background-color: rgba(0,0,0,0) !important;
     outline: 0 none;
     display: block;
@@ -131,7 +143,7 @@ h3 {
     margin-bottom: 10px;
     height: 45px;
   }
-  
+
   form input[type="text"]:focus,
   form input[type="date"]:focus,
   form input[type="datetime"]:focus,
@@ -143,13 +155,13 @@ h3 {
   form input[type="password"]:focus,
   form textarea:focus,
   form select:focus {
-    border-color: none;
-    box-shadow: none;
-    outline: 0 none;
+    border-color: none !important;
+    box-shadow: none !important;;
+    outline: 0 none !important;;
   }
   form textarea {
     resize: none;
-    overflow: hidden;
+    overflow: scroll;
   }
   .btn-primary {
     background-color: $main-header-blue;
@@ -163,6 +175,44 @@ h3 {
   form input[type="submit"]:hover {
     background: linear-gradient(to bottom, $main-link-blue 5%, #30C9C9 100%);
   }
+
+  .bootstrap-typeahead {
+      border-bottom: 2px solid $background-grey !important;
+  }
+
+  .clearfix {
+    border: none;
+  }
+
+  .bootstrap-typeahead, .clearfix {
+    height: 4em;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color:rgba(0,0,0,0) !important;
+    box-shadow:none;
+    outline: 0 none;
+    display: block;
+    width: 100%;
+    padding: 7px;
+    background: transparent;
+
+    .bootstrap-typeahead-input-main {
+      border: none !important;
+    }
+  }
+
+  .token {
+    margin-right: 10px;
+    background: $background-grey;
+    border-radius: 4px;
+    padding: 4px;
+    margin-bottom: 10px;
+    .close-button {
+      margin-left: 5px;
+    }
+  }
+
   .help-block {
     font-family: 'Roboto';
     font-size: 14px;
