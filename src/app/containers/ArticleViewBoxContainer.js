@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
               dispatch(fetchArticleSuccess(payload.data))
           }
         }).catch((error) => {
-          dispatch(fetchArticleFailure(payload));
+          dispatch(fetchArticleFailure(error));
         });
       });
     }

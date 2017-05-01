@@ -46,7 +46,7 @@ export default class Profile extends Component {
           <div name='Tags'>
             <h3>Tags followed by {this.props.profile.name}</h3>
             <div className="header-line"></div>
-            <TagList tags={tagsFollowed}/>
+            <TagList tags={tagsFollowed} authenticatedUser={this.props.authenticatedUser}/>
           </div>
         </PaneSelectorContainer>
       </div>

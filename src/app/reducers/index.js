@@ -4,6 +4,7 @@ import ArticlesReducer from './articlesReducer';
 import PaneSelectorReducer from './paneSelectorReducer';
 import UserReducer from './userReducer';
 import ProfileReducer from './profileReducer';
+import FollowReducer from './followReducer';
 
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   form: formReducer,
   articles: ArticlesReducer,
   paneSelector: PaneSelectorReducer,
-  profile: ProfileReducer
+  profile: ProfileReducer,
+  follow: FollowReducer
 });
 
 export default rootReducer;
