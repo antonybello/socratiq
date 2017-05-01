@@ -4,7 +4,6 @@ import ArticleList from '../components/common/lists/ArticleList';
 
 const mapStateToProps = (state) => {
   return {
-    token: state.user.token,
     articlesList: state.articles.articlesList
   };
 }
@@ -19,7 +18,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           if(payload.status != 200) {
               dispatch(fetchArticlesFailure(payload.data));
           } else {
-              dispatch(fetchArticlesSuccess(payload.data));
+              dispatch(fetchArticlesSuccess(payload.data))
           }
         }).catch((error) => {
           let errorMessage;

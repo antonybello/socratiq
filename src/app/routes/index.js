@@ -6,7 +6,7 @@ import ArticleView from '../components/articleView/ArticleView';
 import TagView from '../components/tagView/TagView';
 import Login from '../components/login/Login';
 import SignUp from '../components/signup/SignUp';
-import SearchPage from '../components/searchResults/SearchPage';
+import SearchResults from '../components/searchResults/SearchResults';
 import ArticlePost from '../components/articlePost/ArticlePost';
 import ProfilePage from '../components/profile/ProfilePage';
 
@@ -17,7 +17,7 @@ export default(
     <Route path="/tag/:id" component={TagView}></Route>
     <Route path="/login" component={Login}/>
     <Route path="/signup" component={SignUp}/>
-    <Route path="/search" component={SearchPage}/>
+    <Route path="/search" component={SearchResults}/>
     <Route path="/new" component={ArticlePost}/>
     <Route path="/profile/:id" component={ProfilePage}/>
   </Route>

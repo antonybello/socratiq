@@ -40,12 +40,12 @@ export default class Profile extends Component {
           <div name='Authors'>
             <h3>Authors followed by {this.props.profile.name}</h3>
             <div className="header-line"></div>
-            <AuthorList authors={usersFollowed}/>
+            <AuthorList authors={usersFollowed} name={this.props.profile.name} authenticatedUser={this.props.authenticatedUser}/>
           </div>
           <div name='Tags'>
             <h3>Tags followed by {this.props.profile.name}</h3>
             <div className="header-line"></div>
-            <TagList tags={tagsFollowed}/>
+            <TagList tags={tagsFollowed} name={this.props.profile.name} authenticatedUser={this.props.authenticatedUser}/>
           </div>
         </PaneSelectorContainer>
       </div>
