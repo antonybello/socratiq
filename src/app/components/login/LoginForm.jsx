@@ -35,7 +35,6 @@ const validateAndLoginUser = (values, dispatch) => {
                reject(payload.data);
            }
        }).catch((error) => {
-           console.log(error);
            if (error.response.status == 403) {
              dispatch(signInUserFailure(error));
              reject(new SubmissionError({_error: error.response.status}));
