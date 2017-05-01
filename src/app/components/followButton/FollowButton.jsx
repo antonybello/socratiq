@@ -23,10 +23,14 @@ export default class FollowButton extends Component {
   }
 
   render() {
+    const { type } = this.props.followee;
     return (
       <Link>
         <span onClick={this.handleClick.bind(this)} className={`${this.state.followed ? 'unfollow' : 'follow'}`}>
-          {this.state.followed ? 'Unfollow' : 'Follow'}
+          { type == 'user' ? 
+            ( this.state.followed ? 'Unfollow' : 'Follow' ) :
+            ( this.state.followed ? 'Unfollow Tag' : 'Follow Tag')
+          }
         </span>
       </Link>
     );
