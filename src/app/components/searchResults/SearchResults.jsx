@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import PaneSelectorContainer from '../../containers/PaneSelectorContainer';
 import SearchHeader from './SearchHeader'
 import ArticleListContainer from '../../containers/ArticleListContainer';
+import AuthorSearchContainer from '../../containers/AuthorSearchContainer';
 import { AuthorList, TagList } from '../common/lists';
 
 export default class SearchResults extends Component {
@@ -31,6 +32,7 @@ export default class SearchResults extends Component {
           <div name='Authors'>
             <h3>Authors named {query}</h3>
             <div className="header-line"></div>
+            <AuthorSearchContainer query={query}/>
           </div>
           <div name='Tags'>
             <h3>Tags matching {query}</h3>
