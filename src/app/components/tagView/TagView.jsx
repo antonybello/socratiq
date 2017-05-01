@@ -3,7 +3,6 @@ import ArticleListContainer from '../../containers/ArticleListContainer';
 import FollowButtonContainer from '../../containers/FollowButtonContainer';
 
 export default class TagView extends Component {
-
   render() {
     const tag = this.props.params.id;
     const followee = { id: tag, type: 'tag' };

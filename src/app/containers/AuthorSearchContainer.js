@@ -9,14 +9,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    fetchAuthors: () => { return new Promise(() => {
-      let response = dispatch(searchAuthors(ownProps.query));
-      response.payload.then((payload) => {
-        dispatch(searchAuthorsSuccess(payload));
-      });
-    })}
-  };
+  return {};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthorList);

@@ -5,12 +5,6 @@ import PropTypes from 'prop-types';
 
 export default class AuthorList extends Component {
 
-  componentWillMount() {
-    if (this.props.fetchAuthors) {
-      this.props.fetchAuthors();
-    }
-  }
-
   renderAuthors(authors) {
     return authors.map((a, i) => {
         return (
