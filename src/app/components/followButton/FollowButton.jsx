@@ -5,7 +5,7 @@ export default class FollowButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      followed: props.followed
+      followed: props.followee.followed
     };
   }
 
@@ -17,8 +17,9 @@ export default class FollowButton extends Component {
   }
 
   toggleFollow() {
-    const { userid, authorid, token } = this.props;
-    this.state.followed ? this.props.unfollow(userid, authorid, token) : this.props.follow(userid, authorid, token);
+    const { userid, followee, token } = this.props;
+    this.state.followed ? this.props.unfollow(userid, followee, token ) 
+                        : this.props.follow(userid, followee, token );
   }
 
   render() {

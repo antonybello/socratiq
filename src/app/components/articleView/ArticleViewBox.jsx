@@ -14,10 +14,11 @@ export default class ArticleViewBox extends Component {
 
   renderFollowButton() {
     const { isAuthenticated, userid, author, token } = this.props;
+    const followee = { id: author.userid, followed: author.followed, type: 'user' };
     if (isAuthenticated) {
       if (userid !== author.userid) {
         return (
-          <FollowButtonContainer followed={author.followed} userid={userid} authorid={author.userid} token={token} />
+          <FollowButtonContainer followee={followee} userid={userid} token={token} />
         );
       }
     }
@@ -43,7 +44,10 @@ export default class ArticleViewBox extends Component {
     return (
       <div className="article-container">
         <h3>{article.title}</h3>
-        <h5>{article.author.name} {this.renderFollowButton()}</h5>
+        <h5>
+          <Link to={`/profile/${article.author.userid}`}>{article.author.name}</Link>
+          { this.renderFollowButton() }
+        </h5>
         <h5>{article.author.institution}</h5>
         <p>{article.content}</p>
         <ul className="tags list-inline">

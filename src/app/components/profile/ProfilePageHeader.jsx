@@ -5,10 +5,11 @@ export default class ProfilePageHeader extends Component {
 
   renderFollowButton(profileid, followed) {
     const { status, userid, token } = this.props.authenticatedUser;
+    const followee = { id: profileid, followed: followed, type: 'user' };
     if (status == 'authenticated') {
       if (userid !== profileid) {
         return (
-          <FollowButtonContainer followed={followed} userid={userid} authorid={profileid} token={token} />
+          <FollowButtonContainer followee={followee} userid={userid} token={token} />
         );
       }
     }

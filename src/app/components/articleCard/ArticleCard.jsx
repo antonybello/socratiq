@@ -23,10 +23,11 @@ export default class ArticleCard extends Component {
 
   renderFollowButton() {
     const { isAuthenticated, userid, token, author } = this.props;
+    const followee = { id: author.userid, followed: author.followed, type: 'user' };
     if (isAuthenticated) {
       if (userid !== author.userid) {
         return (
-          <FollowButtonContainer followed={author.followed} userid={userid} authorid={author.userid} token={token} />
+          <FollowButtonContainer followee={followee} userid={userid} token={token} />
         );
       }
     }
