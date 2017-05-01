@@ -45,6 +45,7 @@
   position: fixed;
   width: 100%;
 }
+
 body,
 h1,
 h2,
@@ -60,6 +61,7 @@ body {
   background-color: $background-grey;
 }
 a,
+
 a:hover,
 a:active,
 a:visited,
@@ -68,6 +70,7 @@ a:focus {
   cursor: hand;
   text-decoration: none;
 }
+
 h1,
 h2,
 h3 {
@@ -96,7 +99,6 @@ h3 {
     padding: 0 3em 0 2em;
   }
 }
-
 
 .form-container {
   padding: 30px;
@@ -247,4 +249,32 @@ h3 {
 }
 .white-bg {
   background-color: $background-white;
+}
+
+
+.tag-author-list {
+  padding-bottom: 1em;
+
+  .institution {
+    font-size: .9em;
+    color: $subtext-text-grey;
+  }
+
+  .author-item {
+    padding: 1em 0 1em 0;
+    border-bottom: 2px solid $border-bottom-grey;
+  }
+
+  div:last-child .author-item {
+    border-bottom: none;
+    padding-bottom: 0em;
+  }
+
+  .name, .follow, .unfollow {
+    margin: 0 2em;
+  }
+
+  .follow, .unfollow {
+    float: right;
+  }
 }
