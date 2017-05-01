@@ -15,17 +15,17 @@ const assign = Object.assign;
 // 4. 'authenticated'(after signin)
 // 5. 'logout' (after logout)
 
-const INITIAL_STATE = {status:null, token: null, error:null, loading: false, userid: null, tagsFollowing: null};
+const INITIAL_STATE = {status:null, token: null, error:null, loading: false, userid: null, tagsFollowing: null, usersFollowing: null };
 
 export default function(state = INITIAL_STATE, action) {
-  let error, authToken, tagsFollowing;
+  let error, authToken, tagsFollowing, usersFollowing;
   switch(action.type) {
 
     case SIGNUP_USER:
       return assign({ ...state, status:'signup', token: null, error:null, loading: true, userid: null});
     case SIGNUP_USER_SUCCESS:
 			authToken = action.payload.headers.authorization;
-      return assign({ ...state, status:'authenticated', token: authToken, loading: false, userid: action.userid, tagsFollowing: []});
+      return assign({ ...state, status:'authenticated', token: authToken, loading: false, userid: action.userid, tagsFollowing: [], usersFollowing: []});
     case SIGNUP_USER_FAILURE:
       error = action.payload.data || {message: action.payload.message};
       return assign({ ...state, status:'signup', token: null, error:error, loading: false, userid: null});
@@ -37,7 +37,8 @@ export default function(state = INITIAL_STATE, action) {
     case SIGNIN_USER_SUCCESS:
 			authToken = action.payload.headers.authorization;
       tagsFollowing = action.payload.data.tagsFollowed;
-      return assign({ ...state, status:'authenticated', token: authToken, error:null, loading: false, userid: action.userid, tagsFollowing: tagsFollowing});
+      usersFollowing = action.payload.data.usersFollowed;
+      return assign({ ...state, status:'authenticated', token: authToken, error:null, loading: false, userid: action.userid, tagsFollowing: tagsFollowing, usersFollowing: usersFollowing});
     case SIGNIN_USER_FAILURE:
       error = action.payload.data || {message: action.payload.message};
       return assign({ ...state, status:'signin', token: null, error: error, loading: false, userid: null});
@@ -51,11 +52,15 @@ export default function(state = INITIAL_STATE, action) {
       return assign({ ...state, error: null });
     case FOLLOW_SUCCESS:
       tagsFollowing = state.tagsFollowing;
+      usersFollowing = state.tagsFollowing;
       if (action.followee.type == 'tag') {
         tagsFollowing = state.tagsFollowing.slice();
         tagsFollowing.push(action.followee.id);
+      } else if (action.followee.type == 'user') {
+        usersFollowing = state.usersFollowing.slice();
+        usersFollowing.push(action.followee.id);
       }
-      return assign({ ...state, error: null, tagsFollowing: tagsFollowing });
+      return assign({ ...state, error: null, tagsFollowing: tagsFollowing, usersFollowing: usersFollowing });
     case FOLLOW_FAILURE:
       error = action.payload.data || {message: action.payload.message};
       return assign({ ...state, error: error });
@@ -64,10 +69,13 @@ export default function(state = INITIAL_STATE, action) {
        return assign({ ...state, error: null });    
     case UNFOLLOW_SUCCESS:
       tagsFollowing = state.tagsFollowing;
+      usersFollowing = state.usersFollowing;
       if (action.followee.type == 'tag') {
-        tagsFollowing = state.tagsFollowing.filter((tag) => tag !== action.followee.id);
+        tagsFollowing = tagsFollowing.filter((tag) => tag !== action.followee.id);
+      } else if (action.followee.type == 'user') {
+        usersFollowing = usersFollowing.filter((user) => user !== action.followee.id);
       }
-      return assign({ ...state, error: null, tagsFollowing: tagsFollowing });    
+      return assign({ ...state, error: null, tagsFollowing: tagsFollowing, usersFollowing: usersFollowing });    
     case UNFOLLOW_FAILURE:
       error = action.payload.data || {message: action.payload.message};
       return assign({ ...state, error: error });

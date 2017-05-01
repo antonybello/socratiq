@@ -10,7 +10,7 @@ export default class TagList extends Component {
         <div key={i}>
           <li className="author-item">
             <Link className="name" to={`/tag/${t.tag}`}>{t.tag}</Link>
-            <FollowButtonContainer followee={{ id: tag.tag, type: 'tag' }} />
+            <FollowButtonContainer followee={{ id: t.tag, type: 'tag' }} />
           </li>
         </div>
       );

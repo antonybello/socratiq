@@ -21,18 +21,6 @@ export default class ArticleCard extends Component {
     });
   }
 
-  renderFollowButton() {
-    const { isAuthenticated, userid, token, author } = this.props;
-    const followee = { id: author.userid, followed: author.followed, type: 'user' };
-    if (isAuthenticated) {
-      if (userid !== author.userid) {
-        return (
-          <FollowButtonContainer followee={followee} userid={userid} token={token} />
-        );
-      }
-    }
-  }
-
   render() {
     const { author, id, title, date, snippet, tags, suppressFollowButton } = this.props;
     return(
@@ -40,7 +28,9 @@ export default class ArticleCard extends Component {
         <Link to={`/article/${id}`}><h4>{title}</h4></Link>
         <h5>
           <Link to={`/profile/${author.userid}`}>{author.name}</Link>
-          { (!suppressFollowButton) && this.renderFollowButton()}
+          { (!suppressFollowButton) && 
+            <FollowButtonContainer followee={{ id: author.userid, type: 'user' }}/>
+          }
         </h5>
         <h6>{author.institution}</h6>
         <h6>{date}</h6>

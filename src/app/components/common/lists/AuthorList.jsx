@@ -5,26 +5,14 @@ import PropTypes from 'prop-types';
 
 export default class AuthorList extends Component {
 
-  renderFollowButton(author) {
-    const { status, userid, token } = this.props.authenticatedUser;
-    const followee = { id: author.userid, followed: author.followed, type: 'user' };
-    if (status == 'authenticated') {
-      if (userid !== author.userid) {
-        return (
-          <FollowButtonContainer followee={followee} userid={userid} token={token} />
-        );
-      }
-    }
-  }
-
   renderAuthors(authors) {
     return authors.map((a, i) => {
         return (
           <div key={i}>
-            <li className="author-item">
+            <li className="author-item" key={i}> 
               <Link className="name" to={`/profile/${a.userid}`}>{a.name} </Link>
               <span className="institution">{a.institution}</span>
-              { this.renderFollowButton(a) }
+              <FollowButtonContainer key={i} followee={{id: a.userid, type: 'user'}}/>
             </li>
           </div>
         );
