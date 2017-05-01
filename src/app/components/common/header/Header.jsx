@@ -25,6 +25,9 @@ export default class Header extends Component {
       return (
         <ul className="nav navbar-nav navbar-right">
           <li>
+            <Link to="/search">Search</Link>
+          </li>
+          <li>
             <Link to="/new">New post</Link>
           </li>
           <li>
@@ -38,6 +41,9 @@ export default class Header extends Component {
     }
     return (
       <ul className="nav navbar-nav navbar-right">
+        <li>
+          <Link to="/search">Search</Link>
+        </li>
         <li>
           <Link to="/login">Log in</Link>
         </li>

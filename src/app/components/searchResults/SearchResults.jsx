@@ -26,7 +26,7 @@ export default class SearchResults extends Component {
           <div name='Articles'>
             <h3>Articles matching {query}</h3>
             <div className="header-line"></div>
-            <ArticleListContainer suppressFollowButton={true} query={query} filters={{ search_query: query }}/>
+            <ArticleListContainer query={query} filters={{ search_query: query }}/>
           </div>
           <div name='Authors'>
             <h3>Authors named {query}</h3>
