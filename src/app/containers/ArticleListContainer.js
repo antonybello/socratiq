@@ -4,6 +4,7 @@ import ArticleList from '../components/common/lists/ArticleList';
 
 const mapStateToProps = (state) => {
   return {
+    token: state.user.token,
     articlesList: state.articles.articlesList
   };
 }
