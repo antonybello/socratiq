@@ -20,6 +20,7 @@ export default class Header extends Component {
 
   renderTopLinks() {
     const { isAuthenticated } = this.props;
+    const { userid } = this.props.user;
     if (isAuthenticated) {
       return (
         <ul className="nav navbar-nav navbar-right">
@@ -30,7 +31,7 @@ export default class Header extends Component {
             <Link to="/" onClick={this.props.logout}>Log out</Link>
           </li>
           <li>
-            <Link to="/profile/:username">Profile</Link>
+            <Link to={`/profile/${userid}`}>Profile</Link>
           </li>
         </ul>
       );

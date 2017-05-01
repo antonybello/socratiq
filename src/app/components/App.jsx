@@ -10,7 +10,7 @@ function App({ children }) {
         <HeaderContainer />
         <Tagbar />
       </div>
-      <div className="container main">
+      <div className="container">
         {children}
       </div>
     </div>

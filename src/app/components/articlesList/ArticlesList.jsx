@@ -26,7 +26,7 @@ export default class ArticlesList extends Component {
   renderArticles(articles) {
     return articles.map((article) => {
       return (
-        <ArticleCard userid={this.props.userid} isAuthenticated={this.props.isAuthenticated} token={this.props.token} key={article.id} {...article} />
+        <ArticleCard suppressFollowButton={this.props.suppressFollowButton} userid={this.props.userid} isAuthenticated={this.props.isAuthenticated} token={this.props.token} key={article.id} {...article} />
       );
     });
   }

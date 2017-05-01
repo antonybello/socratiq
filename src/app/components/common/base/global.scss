@@ -1,216 +1,186 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700,900,900i');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,600,700');
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-
-.fade-in {
-  opacity:0;  /* make things invisible upon start */
-  -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
-  -moz-animation:fadeIn ease-in 1;
-  animation:fadeIn ease-in 1;
-
-  -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
-  -moz-animation-fill-mode:forwards;
-  animation-fill-mode:forwards;
-
-  -webkit-animation-duration:.15s;
-  -moz-animation-duration:.15s;
-  animation-duration:.15s;
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fade-in {
+  opacity: 0;
+  /* make things invisible upon start */
+  -webkit-animation: fadeIn ease-in 1;
+  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+  -moz-animation: fadeIn ease-in 1;
+  animation: fadeIn ease-in 1;
+  -webkit-animation-fill-mode: forwards;
+  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-duration: 0.15s;
+  -moz-animation-duration: 0.15s;
+  animation-duration: 0.15s;
+}
 .top-container {
+  z-index: 1000;
   top: 0;
   position: fixed;
   width: 100%;
 }
-
-body, h1, h2, h3, h4, h5, h6, a {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
   font-family: 'Roboto';
 }
-
 body {
   color: $main-text-grey;
-  background-color:$background-grey;
+  background-color: $background-grey;
 }
-
-a, a:hover, a:active, a:visited, a:focus {
+a,
+a:hover,
+a:active,
+a:visited,
+a:focus {
   cursor: pointer;
   cursor: hand;
-  text-decoration:none;
+  text-decoration: none;
+}
+h1,
+h2,
+h3 {
+  color: $main-header-blue;
 }
 
 .main {
   margin-top: 11em;
+}
 
-  h1, h2, h3 {
-    color: $main-header-blue;
-  }
-
-  .page-title {
-    margin-top: 0px;
-    padding: 30px 0 0 30px;
-  }
-
-  .form-container {
-      padding: 30px;
-      width: 50em;
-
-      .article-title {
-        font-size: 1.5em;
-        font-weight: 500;
-        letter-spacing: 1px;
-        color: $fade-text-grey;
+.page-title {
+  margin-top: 0;
+  padding: 30px 0 0 30px;
+}
+.form-container {
+  padding: 30px;
+  width: 50em;
+  form {
+    border-radius: 0;
+    font-family: 'Roboto';
+    background: $background-white;
+    .bootstrap-tokenizer {
+      .token,
+      .token-removeable {
+        display: inline;
       }
-
-      .content {
-        height: 20em;
-        overflow: scroll;
-      }
-
-      form{
-          border-radius: 0;
-          font-family: 'Roboto';
-          background: $background-white;
-          .bootstrap-tokenizer {
-            .token, .token-removeable {
-              display: inline;
-            }
-          }
-      }
-      form h2{
-          text-transform: uppercase;
-          font-family: 'Roboto', sans-serif;
-          color: $subtext-text-grey;
-          font-size: 18px;
-          font-weight: 100;
-          padding: 20px;
-          margin: -30px -30px 30px -30px;
-      }
-
-      form input[type="text"],
-      form input[type="date"],
-      form input[type="datetime"],
-      form input[type="email"],
-      form input[type="number"],
-      form input[type="search"],
-      form input[type="time"],
-      form input[type="url"],
-      form input[type="password"],
-      form textarea,
-      form select
-      {
-          border-top: none;
-          border-left: none;
-          border-right: none;
-          border-bottom: 2px solid $background-grey !important;
-          box-shadow:none;
-          background-color:rgba(0,0,0,0) !important;
-          outline: 0 none;
-          display: block;
-          width: 100%;
-          padding: 7px;
-          background: transparent;
-          margin-bottom: 10px;
-          height: 45px;
-      }
-
-      form input[type="text"]:focus,
-      form input[type="date"]:focus,
-      form input[type="datetime"]:focus,
-      form input[type="email"]:focus,
-      form input[type="number"]:focus,
-      form input[type="search"]:focus,
-      form input[type="time"]:focus,
-      form input[type="url"]:focus,
-      form input[type="password"]:focus,
-      form textarea:focus,
-      form select:focus {
-        border-color: none;
-        box-shadow: none;
-        outline: 0 none;
-      }
-
-      form textarea{
-          resize:none;
-          overflow: scroll;
-      }
-
-      .btn-primary {
-          background-color: $main-header-blue;
-          color: $text-white;
-          font-family: 'Roboto';
-          font-size: 16px;
-          padding: 8px 18px;
-          text-decoration: none;
-      }
-
-      form input[type="button"]:hover,
-      form input[type="submit"]:hover {
-          background: linear-gradient(to bottom, $main-link-blue 5%, #30C9C9 100%);
-      }
-
-      .bootstrap-typeahead {
-          border-bottom: 2px solid $background-grey !important;
-      }
-
-      .clearfix {
-        border: none;
-      }
-
-      .bootstrap-typeahead, .clearfix {
-        height: 4em;
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        background-color:rgba(0,0,0,0) !important;
-        box-shadow:none;
-        outline: 0 none;
-        display: block;
-        width: 100%;
-        padding: 7px;
-        background: transparent;
-
-        .bootstrap-typeahead-input-main {
-          border: none !important;
-        }
-
-      }
-
-      .help-block  {
-        font-family: 'Roboto';
-        font-size: 14px;
-        padding-left: 5px;
-      }
-
-      .token {
-        margin-right: 10px;
-        background: $background-grey;
-        border-radius: 4px;
-        padding: 4px;
-        margin-bottom: 10px;
-        .close-button {
-          margin-left: 5px;
-        }
-      }
-
-  }
-
-  .main-container {
-    margin-bottom: 40px;
-    h3 {
-      margin-top: 0em;
-      padding-bottom: .25em;
     }
   }
-
-  .header-line {
-    width: 40em;
-    margin-bottom: 2.5em;
-    border-bottom: 3px solid $border-bottom-grey;
+  form h2 {
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    color: $subtext-text-grey;
+    font-size: 18px;
+    font-weight: 100;
+    padding: 20px;
+    margin: -30px -30px 30px;
   }
-
-  .white-bg {
-    background-color: $background-white;
+  
+  form input[type="text"],
+  form input[type="date"],
+  form input[type="datetime"],
+  form input[type="email"],
+  form input[type="number"],
+  form input[type="search"],
+  form input[type="time"],
+  form input[type="url"],
+  form input[type="password"],
+  form textarea,
+  form select {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid $background-grey !important;
+    box-shadow: none;
+    background-color: rgba(0,0,0,0) !important;
+    outline: 0 none;
+    display: block;
+    width: 100%;
+    padding: 7px;
+    background: transparent;
+    margin-bottom: 10px;
+    height: 45px;
   }
+  
+  form input[type="text"]:focus,
+  form input[type="date"]:focus,
+  form input[type="datetime"]:focus,
+  form input[type="email"]:focus,
+  form input[type="number"]:focus,
+  form input[type="search"]:focus,
+  form input[type="time"]:focus,
+  form input[type="url"]:focus,
+  form input[type="password"]:focus,
+  form textarea:focus,
+  form select:focus {
+    border-color: none;
+    box-shadow: none;
+    outline: 0 none;
+  }
+  form textarea {
+    resize: none;
+    overflow: hidden;
+  }
+  .btn-primary {
+    background-color: $main-header-blue;
+    color: $text-white;
+    font-family: 'Roboto';
+    font-size: 16px;
+    padding: 8px 18px;
+    text-decoration: none;
+  }
+  form input[type="button"]:hover,
+  form input[type="submit"]:hover {
+    background: linear-gradient(to bottom, $main-link-blue 5%, #30C9C9 100%);
+  }
+  .help-block {
+    font-family: 'Roboto';
+    font-size: 14px;
+    padding-left: 5px;
+  }
+}
+.main-container {
+  margin-bottom: 40px;
+  h3 {
+    margin-top: 0;
+    padding-bottom: 0.25em;
+  }
+}
+.header-line {
+  width: 40em;
+  margin-bottom: 2.5em;
+  border-bottom: 3px solid $border-bottom-grey;
+}
+.white-bg {
+  background-color: $background-white;
 }

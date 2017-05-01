@@ -27,3 +27,7 @@ export const UNFOLLOW_USER_FAILURE = 'UNFOLLOW_USER_FAILURE';
 
 //log out user
 export const LOGOUT_USER = 'LOGOUT_USER';
+
+export const SELECT_PANE = 'SELECT_PANE';
+export const FETCH_PROFILE = 'FETCH_PROFILE';
+export const FETCH_PROFILE_SUCCESS = 'FETCH_PROFILE_SUCCESS';

@@ -7,8 +7,8 @@ import TagView from '../components/tagView/TagView';
 import Login from '../components/login/Login';
 import SignUp from '../components/signup/SignUp';
 import AuthProof from '../components/authproof/AuthProof';
-import Profile from '../components/profile/Profile';
 import ArticlePost from '../components/articlePost/ArticlePost';
+import ProfilePage from '../components/profile/ProfilePage';
 
 export default(
   <Route path="/" component={App}>
@@ -19,7 +19,7 @@ export default(
     <Route path="/signup" component={SignUp}/>
     <Route path="/auth-proof" component={AuthProof}/>
     <Route path="/searchResults" component={HomeFeed}/>
-    <Route path="/profile/:username" component={Profile}/>
     <Route path="/new" component={ArticlePost}/>
+    <Route path="/profile/:id" component={ProfilePage}/>
   </Route>
 );
