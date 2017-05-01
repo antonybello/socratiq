@@ -9,6 +9,7 @@ const ROOT_URL = 'https://socratiq-app.appspot.com';
 
 export function follow(userid, followee, token) {
   const { type, id } = followee;
+  console.log(followee);
   const request = axios({
     method: 'put',
     url: `${ROOT_URL}/${type + 's'}/${id}/followers/${userid}`,
