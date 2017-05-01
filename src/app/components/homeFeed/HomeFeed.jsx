@@ -7,7 +7,7 @@ export default class HomeFeed extends Component {
   render() {
     return (
       <div className="main-container main">
-        <ArticleListContainer filters={{}}/>
+        <ArticleListContainer filters={{ personalized: true }}/>
       </div>
     );
   }
