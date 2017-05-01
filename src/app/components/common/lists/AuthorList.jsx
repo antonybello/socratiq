@@ -33,7 +33,7 @@ export default class AuthorList extends Component {
 
   render() {
     if (this.props.authors.length === 0) {
-      return <div><h5>{this.props.name} doesn't follow any authors.</h5></div>;
+      return <div><h5>No authors found.</h5></div>;
     }
     return (
       <div className="white-bg">
