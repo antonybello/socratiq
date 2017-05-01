@@ -8,6 +8,11 @@
   .author-list {
     padding-bottom: 1em;
 
+    .institution {
+      font-size: .9em;
+      color: $subtext-text-grey;
+    }
+
     .author-item {
       padding: 1em 0 1em 0;
       border-bottom: 2px solid $border-bottom-grey;
