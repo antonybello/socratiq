@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import renderField from '../common/base/renderField';
-import { signInUser, signInUserSuccess, signInUserFailure, } from '../../actions/userActions';
+import { signInUser, signInUserSuccess, signInUserFailure } from '../../actions/userActions';
 
 //Client side validation
 function validate(values) {
@@ -37,13 +37,11 @@ const validateAndLoginUser = (values, dispatch) => {
        }).catch((error) => {
            console.log(error);
            if (error.response.status == 403) {
-             alert("Username and password do not match. Try again.");
-             dispatch(signInUserFailure(payload));
-             reject(payload.data);
+             dispatch(signInUserFailure(error));
+             reject(new SubmissionError({_error: error.response.status}));
            } else {
-             alert("Server error, try again.");
-             dispatch(signInUserFailure(payload));
-             reject(payload.data);
+             dispatch(signInUserFailure(error));
+             reject(new SubmissionError({_error: error.response.status}));
            }
        });
    });
@@ -58,7 +56,7 @@ class LoginForm extends Component {
   };
 
   componentWillMount() {
-    this.props.resetMe();
+    this.props.resetSignIn();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -67,8 +65,12 @@ class LoginForm extends Component {
     }
   }
 
+  renderError() {
+    return <div className="form-group error has-error help-block">Username and/or password are invalid.</div>;
+  }
+
   render() {
-    const {handleSubmit, submitting, validate} = this.props;
+    const {handleSubmit, submitting, validate, error} = this.props;
     return (
       <div className='form-container'>
         <form onSubmit={handleSubmit(validateAndLoginUser) }>
@@ -82,6 +84,7 @@ class LoginForm extends Component {
                  type="password"
                  component={ renderField }
                  label="password" />
+               {error && this.renderError()}
           <div>
             <button
                     type="submit"

@@ -1,8 +1,9 @@
 import {
-	SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE, RESET_USER,
-	SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILURE,
-	LOGOUT_USER, FOLLOW, FOLLOW_SUCCESS, FOLLOW_FAILURE,
-  UNFOLLOW_FAILURE, UNFOLLOW_SUCCESS, UNFOLLOW
+  FOLLOW, FOLLOW_SUCCESS, FOLLOW_FAILURE,
+  UNFOLLOW_FAILURE, UNFOLLOW_SUCCESS, UNFOLLOW, SIGNUP_USER, 
+  SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE, RESET_SIGNUP_USER,
+	SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILURE, RESET_SIGNIN_USER,
+	LOGOUT_USER
 } from '../constants/AppConstants';
 
 const assign = Object.assign;
@@ -28,6 +29,8 @@ export default function(state = INITIAL_STATE, action) {
     case SIGNUP_USER_FAILURE:
       error = action.payload.data || {message: action.payload.message};
       return assign({ ...state, status:'signup', token: null, error:error, loading: false, userid: null});
+		case RESET_SIGNUP_USER:
+			return assign({ ...state, status:'signup', token: null, error: null, loading: false, userid: null});
 
     case SIGNIN_USER:
       return assign({ ...state, status:'signin', token: null, error:null, loading: true, userid: null});
@@ -37,13 +40,12 @@ export default function(state = INITIAL_STATE, action) {
       return assign({ ...state, status:'authenticated', token: authToken, error:null, loading: false, userid: action.userid, tagsFollowing: tagsFollowing});
     case SIGNIN_USER_FAILURE:
       error = action.payload.data || {message: action.payload.message};
-      return assign({ ...state, status:'signin', token: null, error:error, loading: false, userid: null});
+      return assign({ ...state, status:'signin', token: null, error: error, loading: false, userid: null});
+		case RESET_SIGNIN_USER:
+			return assign({ ...state, status:'signin', token: null, error: null, loading: false, userid: null});
 
     case LOGOUT_USER:
       return assign({...state, status:'logout', token: null, error:null, loading: false, userid: null});
-
-    case RESET_USER:
-      return assign({ ...state, status:null, token: null, error:null, loading: false, userid: null});
 
     case FOLLOW:
       return assign({ ...state, error: null });

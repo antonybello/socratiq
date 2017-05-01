@@ -14,15 +14,6 @@ export default class ArticleList extends Component {
     }
   }
 
-  renderCategories(categories) {
-     return categories.map((c) => {
-        c = c.trim();
-        return (
-          <Link to={"filter/" + c} key={c} className="list-group-item-text">{" " + c + " "}</Link>
-        );
-     });
-  }
-
   renderArticles(articles) {
     return articles.map((article) => {
       return (
@@ -34,9 +25,9 @@ export default class ArticleList extends Component {
   render() {
     const { articles, loading, error } = this.props.articlesList;
     if(loading) {
-      return <div><h3>Loading...</h3></div>
-    } else if(error) {
-      return <div><h5>{error.message}</h5></div>
+      return <div><h3>Loading...</h3></div>;
+    } else if (articles.length == 0) {
+      return <div><h5>No articles matching {this.props.filters.tag}. </h5></div>;
     }
     return (
       <div>

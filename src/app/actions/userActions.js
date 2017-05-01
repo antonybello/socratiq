@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-import { SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE, RESET_USER,
-         SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILURE, LOGOUT_USER,
-         FOLLOW, FOLLOW_SUCCESS, FOLLOW_FAILURE, 
+import { SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE, RESET_SIGNUP_USER,
+         SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILURE, RESET_SIGNIN_USER,
+         LOGOUT_USER, FOLLOW, FOLLOW_SUCCESS, FOLLOW_FAILURE, 
          UNFOLLOW, UNFOLLOW_SUCCESS, UNFOLLOW_FAILURE } 
          from '../constants/AppConstants';
 
@@ -42,9 +42,9 @@ export function signUpUserFailure(error) {
 }
 
 
-export function resetUser() {
+export function resetSignUpUser() {
   return {
-    type: RESET_USER,
+    type: RESET_SIGNUP_USER
   };
 }
 
@@ -70,6 +70,12 @@ export function signInUserFailure(error) {
     type: SIGNIN_USER_FAILURE,
     payload: error
   };
+}
+
+export function resetSignInUser() {
+  return {
+    type: RESET_SIGNIN_USER
+  }
 }
 
 export function logoutUser() {
