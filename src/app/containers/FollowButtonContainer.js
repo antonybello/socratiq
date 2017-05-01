@@ -1,9 +1,11 @@
 import { connect } from 'react-redux'
-import * as followActions from '../actions/followActions';
+import * as followActions from '../actions/userActions';
 import FollowButton from '../components/followButton/FollowButton';
 
 const mapStateToProps = (state) => {
-  return { state };
+  return { 
+    authenticatedUser: state.user
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -13,11 +15,12 @@ const mapDispatchToProps = (dispatch) => {
            let response = dispatch(followActions.follow(userid, followee, token));
            response.payload.then((payload) =>  {
                if (payload.status == 201){
-                   dispatch(followActions.followSuccess());
+                   dispatch(followActions.followSuccess(followee));
                } else {
                    dispatch(followActions.followFailure(payload));
                }
            }).catch((error) => {
+               console.log(error);
                if (error.response.status == 409) {
                  dispatch(followActions.followFailure(payload));
                } else {
@@ -32,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
            let response = dispatch(followActions.unfollow(userid, followee, token));
            response.payload.then((payload) =>  {
                if (payload.status == 204){
-                   dispatch(followActions.unfollowSuccess());
+                   dispatch(followActions.unfollowSuccess(followee));
                } else {
                    dispatch(followActions.unfollowFailure(payload));
                }
