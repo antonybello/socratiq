@@ -4,24 +4,19 @@ import renderField from '../common/base/renderField';
 
 class SearchHeader extends Component {
   render() {
-    const {handleSubmit, submitting, validate, token, newArticle } = this.props;
+    const { handleSubmit, submitting, validate } = this.props;
     return (
       <div className="profile-header white-bg">
+        <h4 className="search-title">Search Socratic for: </h4>
         <div className='form-container'>
-          <form onSubmit={handleSubmit((values,dispatch)=>{post(values, token, dispatch);})}>
+          <form onSubmit={handleSubmit((q) => this.props.onSubmit(q))}>
             <Field
                    autoFocus="autoFocus"
-                   name="input"
+                   name="query"
                    type="text"
                    className="search"
                    component={ renderField }
-                   label="search" />
-           <button
-                   type="submit"
-                   className="btn btn-primary"
-                   disabled={ submitting }>
-             Search
-           </button>
+                   label="anything" />
           </form>
         </div>
       </div>
@@ -31,10 +26,12 @@ class SearchHeader extends Component {
 
 const validate = (input) => {
   let errors = {};
-  if (!input) {
+  var hasErrors = false;
+  if (!input.query || input.query.trim() === '') {
     errors.input = 'enter a keyword';
+    hasErrors = true;
   }
-  return errors;
+  return hasErrors && errors;
 };
 
 export default reduxForm({

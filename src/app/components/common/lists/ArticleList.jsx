@@ -27,7 +27,7 @@ export default class ArticleList extends Component {
     if(loading) {
       return <div><h3>Loading...</h3></div>;
     } else if (articles.length == 0) {
-      return <div><h5>No articles matching {this.props.filters.tag}. </h5></div>;
+      return <div><h5>No articles found. </h5></div>;
     }
     return (
       <div>

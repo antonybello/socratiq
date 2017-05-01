@@ -1,9 +1,15 @@
 .search-results {
-  margin-top: 8em;
-
-  .search {
-
+  
+  .search-title {
+    padding: 2em 2em 0 2em;
   }
 
+  .search {
+    width: 20em !important;
+    font-size: 2em;
+    color: $main-text-grey;
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
 
 }

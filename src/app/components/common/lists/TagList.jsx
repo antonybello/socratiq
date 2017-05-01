@@ -19,11 +19,11 @@ export default class TagList extends Component {
 
   render() {
     if (this.props.tags.length === 0) {
-      return <div><h5>{this.props.name} doesn't follow any tags.</h5></div>;
+      return <div><h5>No tags found.</h5></div>;
     }
     return (
       <div className="white-bg">
-        <ul className="list-unstyled author-list">
+        <ul className="list-unstyled tag-author-list">
           {this.renderTags(this.props.tags)}
         </ul>
       </div>
