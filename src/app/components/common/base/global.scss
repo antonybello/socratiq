@@ -113,6 +113,7 @@ h3 {
     font-family: 'Roboto';
     background: $background-white;
     .bootstrap-tokenizer {
+      border: none !important;
       .token,
       .token-removeable {
         display: inline;
@@ -193,11 +194,7 @@ h3 {
   }
 
   .bootstrap-typeahead {
-      border-bottom: 2px solid $background-grey !important;
-  }
-
-  .clearfix {
-    border: none;
+      border-bottom: 2px solid $background-grey;
   }
 
   .bootstrap-typeahead, .clearfix {
